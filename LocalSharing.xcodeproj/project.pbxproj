@@ -22,6 +22,8 @@
 		37648B051AB772F1006058FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B041AB772F1006058FE /* SystemConfiguration.framework */; };
 		37648B071AB772FB006058FE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B061AB772FA006058FE /* libz.dylib */; };
 		37648B091AB77303006058FE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B081AB77303006058FE /* libsqlite3.dylib */; };
+		37648B0E1AB775ED006058FE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B0D1AB775ED006058FE /* FacebookSDK.framework */; };
+		37648B101AB78132006058FE /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B0F1AB78132006058FE /* ParseFacebookUtils.framework */; };
 		F02877C31AB76A4000000DB7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C21AB76A4000000DB7 /* FirstViewController.swift */; };
 		F02877C51AB76A6200000DB7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C41AB76A6200000DB7 /* SecondViewController.swift */; };
 		F02877C71AB76AC400000DB7 /* Perfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C61AB76AC400000DB7 /* Perfil.swift */; };
@@ -59,6 +61,8 @@
 		37648B061AB772FA006058FE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		37648B081AB77303006058FE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		37648B0A1AB77343006058FE /* LocalSharing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalSharing-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		37648B0D1AB775ED006058FE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		37648B0F1AB78132006058FE /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		F02877C21AB76A4000000DB7 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		F02877C41AB76A6200000DB7 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F02877C61AB76AC400000DB7 /* Perfil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Perfil.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 				37648B051AB772F1006058FE /* SystemConfiguration.framework in Frameworks */,
 				37648B031AB772E8006058FE /* StoreKit.framework in Frameworks */,
 				37648B011AB772E0006058FE /* Social.framework in Frameworks */,
+				37648B101AB78132006058FE /* ParseFacebookUtils.framework in Frameworks */,
 				37648AFF1AB772D9006058FE /* Security.framework in Frameworks */,
 				37648AFD1AB772D2006058FE /* QuartzCore.framework in Frameworks */,
 				37648AFB1AB772CB006058FE /* MobileCoreServices.framework in Frameworks */,
@@ -93,6 +98,7 @@
 				37648AF11AB772A2006058FE /* Accounts.framework in Frameworks */,
 				37648AED1AB7726D006058FE /* Parse.framework in Frameworks */,
 				37648AEF1AB7727F006058FE /* Bolts.framework in Frameworks */,
+				37648B0E1AB775ED006058FE /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +115,7 @@
 		37648AEB1AB7724B006058FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37648B0D1AB775ED006058FE /* FacebookSDK.framework */,
 				37648B081AB77303006058FE /* libsqlite3.dylib */,
 				37648B061AB772FA006058FE /* libz.dylib */,
 				37648B041AB772F1006058FE /* SystemConfiguration.framework */,
@@ -124,6 +131,7 @@
 				37648AF01AB772A2006058FE /* Accounts.framework */,
 				37648AEE1AB7727F006058FE /* Bolts.framework */,
 				37648AEC1AB7726D006058FE /* Parse.framework */,
+				37648B0F1AB78132006058FE /* ParseFacebookUtils.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
