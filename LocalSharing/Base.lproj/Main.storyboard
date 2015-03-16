@@ -91,10 +91,13 @@
                             <constraint firstAttribute="centerX" secondItem="EPh-JP-X41" secondAttribute="centerX" constant="-0.5" id="4W0-Mt-nzq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="49e-Tb-3d3" kind="modal" identifier="irParaPedidos" id="uTW-RL-AIa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odi-Ma-yLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-668" y="0.0"/>
+            <point key="canvasLocation" x="-732" y="-84"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

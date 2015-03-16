@@ -12,6 +12,7 @@ class FirstScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -30,6 +31,7 @@ class FirstScreen: UIViewController {
                 } else {
                     println("User logged in through Facebook!")
                 }
+                self.performSegueWithIdentifier("irParaPedidos", sender: self)
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
             }
