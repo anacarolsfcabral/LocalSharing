@@ -32,6 +32,7 @@
 		F04BDD341AB76385001305C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F04BDD331AB76385001305C0 /* Images.xcassets */; };
 		F04BDD371AB76385001305C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04BDD351AB76385001305C0 /* LaunchScreen.xib */; };
 		F04BDD431AB76385001305C0 /* LocalSharingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04BDD421AB76385001305C0 /* LocalSharingTests.swift */; };
+		F0AE96881AB7834E005F36D8 /* FirstScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE96871AB7834E005F36D8 /* FirstScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		F04BDD3C1AB76385001305C0 /* LocalSharingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalSharingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F04BDD411AB76385001305C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F04BDD421AB76385001305C0 /* LocalSharingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSharingTests.swift; sourceTree = "<group>"; };
+		F0AE96871AB7834E005F36D8 /* FirstScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				F04BDD2A1AB76385001305C0 /* AppDelegate.swift */,
+				F0AE96871AB7834E005F36D8 /* FirstScreen.swift */,
 				F02877C21AB76A4000000DB7 /* FirstViewController.swift */,
 				F02877C41AB76A6200000DB7 /* SecondViewController.swift */,
 				F02877C61AB76AC400000DB7 /* Perfil.swift */,
@@ -300,6 +303,7 @@
 				F02877C71AB76AC400000DB7 /* Perfil.swift in Sources */,
 				F02877C31AB76A4000000DB7 /* FirstViewController.swift in Sources */,
 				F04BDD2B1AB76385001305C0 /* AppDelegate.swift in Sources */,
+				F0AE96881AB7834E005F36D8 /* FirstScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
