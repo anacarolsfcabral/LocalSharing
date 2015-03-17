@@ -101,7 +101,7 @@ class FirstViewController: UITableViewController {
             let currentUser = PFUser.currentUser() as PFUser
             
             cell.textField.userInteractionEnabled = true
-            //cell.nomeUsuario.text = currentUser["name"] as? String
+            cell.nomeUsuario.text = currentUser["name"] as? String
         }
         else
         {
