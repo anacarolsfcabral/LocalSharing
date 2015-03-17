@@ -66,6 +66,7 @@ class FirstViewController: UITableViewController {
                     
                     pedido.nomeItem = item["name"] as String
                     pedido.autorPedido = autor["name"] as String
+                    pedido.autorFoto = autor["photo"] as String
                     self.pedidosApp.addObject(pedido)
                 }
                 self.tableView.reloadData()
@@ -101,12 +102,21 @@ class FirstViewController: UITableViewController {
             let currentUser = PFUser.currentUser() as PFUser
             
             cell.textField.userInteractionEnabled = true
-            //cell.nomeUsuario.text = currentUser["name"] as? String
+            cell.nomeUsuario.text = currentUser["name"] as? String
+            var str = currentUser["photo"] as String
+            var url = NSURL(string: str)
+            var data = NSData(contentsOfURL: url!)
+            cell.fotoUsuario.image = UIImage(data: data!)
+            
         }
         else
         {
             cell.textField?.text = pedido?.nomeItem
             cell.nomeUsuario?.text = pedido?.autorPedido
+            var str = pedido?.autorFoto
+            var url = NSURL(string: str!)
+            var data = NSData(contentsOfURL: url!)
+            cell.fotoUsuario.image = UIImage(data: data!)
         }
 
         return cell

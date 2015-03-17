@@ -12,6 +12,8 @@ class PedidosTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var nomeUsuario: UILabel!
+    @IBOutlet weak var fotoUsuario: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
