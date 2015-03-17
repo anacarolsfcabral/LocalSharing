@@ -10,7 +10,7 @@ import UIKit
 
 class Pedido: NSObject {
     
-    var nomeItem: String = String()
-    var autorPedido: String = String()
-   
+    var nomeItem: String!
+    var autorPedido: String!
+    var autorFoto: String!
 }
