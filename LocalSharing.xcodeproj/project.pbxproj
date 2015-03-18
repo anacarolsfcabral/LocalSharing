@@ -35,6 +35,7 @@
 		F0AE96881AB7834E005F36D8 /* FirstScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE96871AB7834E005F36D8 /* FirstScreen.swift */; };
 		F0AE968E1AB8A99B005F36D8 /* Pedido.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE968D1AB8A99B005F36D8 /* Pedido.swift */; };
 		F0AE968F1AB8C0B8005F36D8 /* PedidosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE968B1AB88C1D005F36D8 /* PedidosTableViewCell.swift */; };
+		F0AE96911AB8CE65005F36D8 /* MeusPedidos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE96901AB8CE65005F36D8 /* MeusPedidos.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		F0AE96871AB7834E005F36D8 /* FirstScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstScreen.swift; sourceTree = "<group>"; };
 		F0AE968B1AB88C1D005F36D8 /* PedidosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedidosTableViewCell.swift; sourceTree = "<group>"; };
 		F0AE968D1AB8A99B005F36D8 /* Pedido.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pedido.swift; sourceTree = "<group>"; };
+		F0AE96901AB8CE65005F36D8 /* MeusPedidos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeusPedidos.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				F0AE968B1AB88C1D005F36D8 /* PedidosTableViewCell.swift */,
 				F0AE96871AB7834E005F36D8 /* FirstScreen.swift */,
 				F02877C21AB76A4000000DB7 /* FirstViewController.swift */,
+				F0AE96901AB8CE65005F36D8 /* MeusPedidos.swift */,
 				F02877C41AB76A6200000DB7 /* SecondViewController.swift */,
 				F02877C61AB76AC400000DB7 /* Perfil.swift */,
 				F04BDD301AB76385001305C0 /* Main.storyboard */,
@@ -311,6 +314,7 @@
 				F02877C31AB76A4000000DB7 /* FirstViewController.swift in Sources */,
 				F0AE968E1AB8A99B005F36D8 /* Pedido.swift in Sources */,
 				F04BDD2B1AB76385001305C0 /* AppDelegate.swift in Sources */,
+				F0AE96911AB8CE65005F36D8 /* MeusPedidos.swift in Sources */,
 				F0AE96881AB7834E005F36D8 /* FirstScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
