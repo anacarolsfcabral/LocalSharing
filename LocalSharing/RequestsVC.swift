@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  RequestsVC.swift
 //  LocalSharing
 //
 //  Created by Ana Carolina Cabral on 16/03/15.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class FirstViewController: UITableViewController {
-    var pedidosApp:NSMutableArray = NSMutableArray()
+class RequestsVC: UITableViewController {
+    var requests: NSMutableArray = NSMutableArray()
     
     //var detailViewController: DetailViewController? = nil
     var objects = [AnyObject]()
@@ -44,11 +44,11 @@ class FirstViewController: UITableViewController {
     
     func insertNewObject(sender: AnyObject) {
         
-        pedidosApp.insertObject(NSNull(), atIndex: 0)
+        requests.insertObject(NSNull(), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
-        var cell = self.tableView.cellForRowAtIndexPath(indexPath) as PedidosTableViewCell
+        var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestsTVCell
         cell.textField.becomeFirstResponder()
     }
 
@@ -61,8 +61,8 @@ class FirstViewController: UITableViewController {
                 let results = result as NSMutableArray
                 for result in results {
                     let item = result["item"] as PFObject
-                    let autor = result["author"] as PFObject
-                    let pedido = Pedido()
+                    let author = result["author"] as PFObject
+                    let request = Pedido()
                     
                     pedido.nomeItem = item["name"] as String
                     pedido.autorPedido = autor["name"] as String
@@ -88,12 +88,12 @@ class FirstViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return pedidosApp.count
+        return request.count
     }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as PedidosTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as RequestTVCell
         
         let pedido : Pedido? = self.pedidosApp[indexPath.item] as? Pedido
         
@@ -103,14 +103,12 @@ class FirstViewController: UITableViewController {
             
             cell.textField.userInteractionEnabled = true
             cell.nomeUsuario.text = currentUser["name"] as? String
-<<<<<<< HEAD
-=======
+
             var str = currentUser["photo"] as String
             var url = NSURL(string: str)
             var data = NSData(contentsOfURL: url!)
             cell.fotoUsuario.image = UIImage(data: data!)
             
->>>>>>> dev
         }
         else
         {

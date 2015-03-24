@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2cG-0j-seR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2cG-0j-seR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Perfil-->
+        <!--Profile-->
         <scene sceneID="HVJ-QK-AZZ">
             <objects>
-                <viewController id="HGd-we-ZEn" customClass="Perfil" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HGd-we-ZEn" customClass="ProfileVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dtj-2T-Dy5"/>
                         <viewControllerLayoutGuide type="bottom" id="cgJ-Q4-cWf"/>
@@ -42,7 +42,7 @@
                             <constraint firstItem="Et1-K3-jXX" firstAttribute="top" secondItem="Dtj-2T-Dy5" secondAttribute="bottom" constant="35" id="sHk-lT-B1H"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Perfil" id="aBS-vO-yJe"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="aBS-vO-yJe"/>
                     <connections>
                         <outlet property="fotoUsuario" destination="Et1-K3-jXX" id="Ilk-GG-lHI"/>
                         <outlet property="nomeUsuario" destination="q11-F5-GHE" id="xhr-JY-HKG"/>
@@ -55,7 +55,7 @@
         <!--Chats-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="ChatTVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -71,7 +71,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by ChatTVC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
                                 <rect key="frame" x="192" y="329" width="215.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -92,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="108" y="842"/>
         </scene>
-        <!--First Screen-->
+        <!--LoginVC-->
         <scene sceneID="7e5-nO-51u">
             <objects>
-                <viewController id="2cG-0j-seR" customClass="FirstScreen" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2cG-0j-seR" customClass="LoginVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bzF-uI-ykq"/>
                         <viewControllerLayoutGuide type="bottom" id="eRs-Ty-eej"/>
@@ -121,7 +121,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="49e-Tb-3d3" kind="modal" identifier="irParaPedidos" id="uTW-RL-AIa"/>
+                        <segue destination="49e-Tb-3d3" kind="modal" identifier="goToRequests" id="uTW-RL-AIa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odi-Ma-yLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,16 +149,16 @@
             </objects>
             <point key="canvasLocation" x="34" y="-140"/>
         </scene>
-        <!--Pedidos-->
+        <!--Requests-->
         <scene sceneID="ZzD-jf-vNC">
             <objects>
-                <tableViewController id="2SC-Pi-LdL" customClass="FirstViewController" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="2SC-Pi-LdL" customClass="RequestsVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="fWG-O9-1yg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="6wj-an-y8b" customClass="PedidosTableViewCell" customModule="LocalSharing" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="6wj-an-y8b" customClass="RequestTVCell" customModule="LocalSharing" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6wj-an-y8b" id="1fA-EW-D7J">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -226,17 +226,17 @@
                             <outlet property="delegate" destination="2SC-Pi-LdL" id="IO0-sc-wfY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pedidos" id="04l-0H-mrq"/>
+                    <navigationItem key="navigationItem" title="Requests" id="04l-0H-mrq"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD6-yP-bxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1506" y="-174"/>
         </scene>
-        <!--Pedidos-->
+        <!--Requests-->
         <scene sceneID="FVg-Jm-dcx">
             <objects>
                 <navigationController id="zpv-mk-cTv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Pedidos" image="check" id="9Xf-ny-VuC"/>
+                    <tabBarItem key="tabBarItem" title="Requests" image="check" id="9Xf-ny-VuC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uvf-D2-YR7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -249,16 +249,16 @@
             </objects>
             <point key="canvasLocation" x="686" y="-174"/>
         </scene>
-        <!--Meus Pedidos-->
+        <!--My Requests-->
         <scene sceneID="d1m-nR-fut">
             <objects>
-                <tableViewController id="stp-vz-bpW" customClass="MeusPedidos" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="stp-vz-bpW" customClass="MyRequestsVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="SIx-XU-fyC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="mei-1M-DjB" customClass="PedidosTableViewCell" customModule="LocalSharing" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="mei-1M-DjB" customClass="RequestTVCell" customModule="LocalSharing" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mei-1M-DjB" id="waA-6K-RlP">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -309,17 +309,17 @@
                             <outlet property="delegate" destination="stp-vz-bpW" id="6ok-Q4-hSs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Meus Pedidos" id="urg-PV-JC7"/>
+                    <navigationItem key="navigationItem" title="My Requests" id="urg-PV-JC7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtT-84-a3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1548" y="672"/>
         </scene>
-        <!--Meus Pedidos-->
+        <!--My Requests-->
         <scene sceneID="Jd0-Js-Mtp">
             <objects>
                 <navigationController id="5hr-5b-bLx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Meus Pedidos" id="1wa-to-RfY"/>
+                    <tabBarItem key="tabBarItem" title="My Requests" id="1wa-to-RfY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="T4e-Do-0Nv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

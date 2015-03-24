@@ -1,5 +1,5 @@
 //
-//  PedidosTableViewCell.swift
+//  RequestTVCell.swift
 //  LocalSharing
 //
 //  Created by Ana Carolina Cabral on 17/03/15.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class PedidosTableViewCell: UITableViewCell, UITextFieldDelegate {
+class RequestTVCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var nomeUsuario: UILabel!
-    @IBOutlet weak var fotoUsuario: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userPicture: UIImageView!
     
     
     override func awakeFromNib() {
@@ -30,7 +30,7 @@ class PedidosTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         
-        println("digitando")
+        println("typing")
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
