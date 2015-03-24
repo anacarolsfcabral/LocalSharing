@@ -38,3 +38,4 @@ class ChatTVC: UITableViewController {
         // Return the number of rows in the section.
         return 0
      }
+}
