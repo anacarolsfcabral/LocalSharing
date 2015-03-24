@@ -9,18 +9,10 @@
 import UIKit
 
 class RequestsVC: UITableViewController {
-    var requests: NSMutableArray = NSMutableArray()
-    
-    //var detailViewController: DetailViewController? = nil
-    var objects = [AnyObject]()
+    var requestsList: [Request] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         
         getRequests()
         
@@ -32,11 +24,6 @@ class RequestsVC: UITableViewController {
         
         
         
-//        if let split = self.splitViewController {
-//            let controllers = split.viewControllers
-//            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,32 +39,30 @@ class RequestsVC: UITableViewController {
         cell.textField.becomeFirstResponder()
     }
 
-    func getRequests ()
-    {
-    
-        PFCloud.callFunctionInBackground("getRequests", withParameters:[:]) {
-            (result: AnyObject!, error: NSError!) -> Void in
-            if error == nil {
-                let results = result as NSMutableArray
-                for result in results {
-                    let item = result["item"] as PFObject
-                    let author = result["author"] as PFObject
-                    let request = Pedido()
-                    
-                    pedido.nomeItem = item["name"] as String
-                    pedido.autorPedido = autor["name"] as String
-                    pedido.autorFoto = autor["photo"] as String
-                    self.pedidosApp.addObject(pedido)
-                }
-                self.tableView.reloadData()
-                
-            }
-        }
+//    func getRequests ()
+//    {
+//    
+//        PFCloud.callFunctionInBackground("getRequests", withParameters:[:]) {
+//            (result: AnyObject!, error: NSError!) -> Void in
+//            if error == nil {
+//                let results = result as NSMutableArray
+//                for result in results {
+//                    let item = result["item"] as PFObject
+//                    let author = result["author"] as PFObject
+//                    let request = Pedido()
+//                    
+//                    pedido.nomeItem = item["name"] as String
+//                    pedido.autorPedido = autor["name"] as String
+//                    pedido.autorFoto = autor["photo"] as String
+//                    self.pedidosApp.addObject(pedido)
+//                }
+//                self.tableView.reloadData()
+//                
+//            }
+//        }
     
     
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
@@ -88,87 +73,21 @@ class RequestsVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return request.count
+        return requestsList.count
     }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as RequestTVCell
         
-        let pedido : Pedido? = self.pedidosApp[indexPath.item] as? Pedido
+        let request : Request = self.requestsList[indexPath.item]
         
-        if pedido == nil
-        {
-            let currentUser = PFUser.currentUser() as PFUser
-            
-            cell.textField.userInteractionEnabled = true
-            cell.nomeUsuario.text = currentUser["name"] as? String
-
-            var str = currentUser["photo"] as String
-            var url = NSURL(string: str)
-            var data = NSData(contentsOfURL: url!)
-            cell.fotoUsuario.image = UIImage(data: data!)
-            
-        }
-        else
-        {
-            cell.textField?.text = pedido?.nomeItem
-            cell.nomeUsuario?.text = pedido?.autorPedido
-            var str = pedido?.autorFoto
-            var url = NSURL(string: str!)
-            var data = NSData(contentsOfURL: url!)
-            cell.fotoUsuario.image = UIImage(data: data!)
-        }
-
+        
+        cell.textField?.text = request.item.name
+        cell.userName?.text = request.author.name
+        cell.userPicture.image = request.author.picture
+        
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-    
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
