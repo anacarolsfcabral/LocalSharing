@@ -8,34 +8,35 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController
+{
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-        
     }
     
-    @IBAction func loginButton(sender: UIButton) {
-        PFFacebookUtils.logInWithPermissions(["public_profile"], {
-            (user: PFUser!, error: NSError!) -> Void in
-            if let user = user {
-                if user.isNew {
-                    println("User signed up and logged in through Facebook!")
+    @IBAction func loginButton(sender: UIButton)
+    {
+        PFFacebookUtils.logInWithPermissions(["public_profile"],
+            {
+                (user: PFUser!, error: NSError!) -> Void in
+                if let user = user {
+                    if user.isNew {
+                        println("User signed up and logged in through Facebook!")
+                    } else {
+                        println("User logged in through Facebook!")
+                    }
+                    self.performSegueWithIdentifier("goToRequests", sender: self)
                 } else {
-                    println("User logged in through Facebook!")
+                    println("Uh oh. The user cancelled the Facebook login.")
                 }
-                self.performSegueWithIdentifier("goToRequests", sender: self)
-            } else {
-                println("Uh oh. The user cancelled the Facebook login.")
-            }
-        })
-        
-        
+            })
     }
 
 }

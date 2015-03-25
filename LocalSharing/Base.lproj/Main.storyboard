@@ -263,7 +263,13 @@
                             <outlet property="delegate" destination="2SC-Pi-LdL" id="IO0-sc-wfY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Requests" id="04l-0H-mrq"/>
+                    <navigationItem key="navigationItem" title="Requests" id="04l-0H-mrq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Ft-ij-iG0">
+                            <connections>
+                                <action selector="insertNewRequest:" destination="2SC-Pi-LdL" id="Nmx-CC-M8M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD6-yP-bxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -289,7 +295,7 @@
         <!--My Requests-->
         <scene sceneID="d1m-nR-fut">
             <objects>
-                <tableViewController id="stp-vz-bpW" customClass="MyRequestsVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="stp-vz-bpW" customClass="UserRequestsVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="SIx-XU-fyC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

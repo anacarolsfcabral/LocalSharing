@@ -81,12 +81,10 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
             {
             (result: AnyObject!, error: NSError!) -> Void in
             
-            if error == nil
-            {
+            if error == nil{
                 
             }
-            else
-            {
+            else{
                 println(error)
             }
         }
