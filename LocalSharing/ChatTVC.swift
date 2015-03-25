@@ -10,12 +10,14 @@ import UIKit
 
 class ChatTVC: UITableViewController
 {
+    var dealingsList: [Request] = []
+    var dao: DAO = ParseDAO()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        getDealingRequests(page: 0, limit: 0) -> [Request]
+        dealingsList = dao.getDealingRequests(0, limit: 0)
         
     }
     

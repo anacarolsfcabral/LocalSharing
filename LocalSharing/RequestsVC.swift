@@ -11,13 +11,13 @@ import UIKit
 class RequestsVC: UITableViewController
 {
     var requestsList: [Request] = []
-    var dao = DAO()
+    var dao: DAO = ParseDAO()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        requestsList = dao.getRequests(0, page: 0)
+        requestsList = dao.getRequests(0, limit: 0)
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
     }
@@ -35,8 +35,7 @@ class RequestsVC: UITableViewController
         
         var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
         cell.textField.becomeFirstResponder()
-        
-        createRequest(item: Item!) -> Request
+    
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
