@@ -10,18 +10,13 @@ import UIKit
 
 class User
 {
-    var id: String!
+    var id: String?
     var name: String!
     var picture: UIImage!
     var requestLimit: Int!
     
-//    func canRequest() -> Bool {
-//        
-//    }
-    
-    init (id: String!, name: String!, picture: UIImage!, requestLimit: Int!)
+    init (name: String!, picture: UIImage!, requestLimit: Int!)
     {
-        self.id = id
         self.name = name
         self.picture = picture
         self.requestLimit = requestLimit

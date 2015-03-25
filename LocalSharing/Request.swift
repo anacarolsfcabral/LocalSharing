@@ -9,7 +9,7 @@
 import UIKit
 
 class Request {
-    var id: String!
+    var id: String?
     var author: User!
     var helper: User?
     var item: Item!
@@ -21,9 +21,8 @@ class Request {
 //    func getExpireDate() -> NSDate {
 //}
 
-    init (id: String!, author: User!, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!)
+    init(author: User!, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!)
     {
-        self.id = id
         self.author = author
         self.item = item
         self.dealing = dealing
@@ -31,9 +30,9 @@ class Request {
         self.expired = expired
     }
         
-    convenience init (id: String!, author: User!, helper: User?, item: Item!, lastMessage: [Message]?, dealing: Bool!, closed: Bool!, expired: Bool!)
+    convenience init(author: User!, helper: User?, item: Item!, lastMessage: [Message]?, dealing: Bool!, closed: Bool!, expired: Bool!)
     {
-        self.init (id: id, author: author, item: item, dealing: dealing, closed: closed, expired: expired);
+        self.init(author: author, item: item, dealing: dealing, closed: closed, expired: expired);
         self.lastMessage = lastMessage
         self.helper = helper
     }

@@ -44,6 +44,7 @@
 		FB1A387B1AC1744500512311 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A387A1AC1744500512311 /* Item.swift */; };
 		FB1A387D1AC1758A00512311 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A387C1AC1758A00512311 /* Message.swift */; };
 		FB1A387F1AC1772500512311 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A387E1AC1772500512311 /* DAO.swift */; };
+		FB1A38881AC354CD00512311 /* ParseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A38871AC354CD00512311 /* ParseDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		FB1A387A1AC1744500512311 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FB1A387C1AC1758A00512311 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FB1A387E1AC1772500512311 /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
+		FB1A38871AC354CD00512311 /* ParseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 		F04BDD271AB76385001305C0 /* LocalSharing */ = {
 			isa = PBXGroup;
 			children = (
+				FB1A38861AC3543E00512311 /* DAO */,
 				FB1A38771AC16F7B00512311 /* Model */,
 				FB1A38801AC1793A00512311 /* Controller */,
 				F04BDD2A1AB76385001305C0 /* AppDelegate.swift */,
@@ -230,7 +233,6 @@
 				FB1A38781AC173AA00512311 /* User.swift */,
 				FB1A387A1AC1744500512311 /* Item.swift */,
 				FB1A387C1AC1758A00512311 /* Message.swift */,
-				FB1A387E1AC1772500512311 /* DAO.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -254,6 +256,15 @@
 				F04BDD301AB76385001305C0 /* Main.storyboard */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		FB1A38861AC3543E00512311 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				FB1A38871AC354CD00512311 /* ParseDAO.swift */,
+				FB1A387E1AC1772500512311 /* DAO.swift */,
+			);
+			name = DAO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +374,7 @@
 				FB1A387F1AC1772500512311 /* DAO.swift in Sources */,
 				FB1A387B1AC1744500512311 /* Item.swift in Sources */,
 				F0AE968F1AB8C0B8005F36D8 /* RequestTVCell.swift in Sources */,
+				FB1A38881AC354CD00512311 /* ParseDAO.swift in Sources */,
 				F02877C51AB76A6200000DB7 /* ChatTVC.swift in Sources */,
 				F02877C71AB76AC400000DB7 /* ProfileVC.swift in Sources */,
 				F02877C31AB76A4000000DB7 /* RequestsVC.swift in Sources */,
