@@ -33,9 +33,8 @@ class Request {
         
     convenience init (id: String!, author: User!, helper: User?, item: Item!, lastMessage: [Message]?, dealing: Bool!, closed: Bool!, expired: Bool!)
     {
+        self.init (id: id, author: author, item: item, dealing: dealing, closed: closed, expired: expired);
         self.lastMessage = lastMessage
         self.helper = helper
-        
-        self.init (id, author: author, item: item, dealing: dealing, closed: closed, expired: expired);
     }
 }
