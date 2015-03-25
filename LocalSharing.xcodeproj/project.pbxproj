@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3652186E1AC30744006C74EB /* facebookButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3652186C1AC30744006C74EB /* facebookButton.png */; };
-		3652186F1AC30744006C74EB /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3652186D1AC30744006C74EB /* logo.png */; };
-		365218711AC311AB006C74EB /* informationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 365218701AC311AB006C74EB /* informationIcon.png */; };
-		365218731AC31561006C74EB /* feedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 365218721AC31561006C74EB /* feedIcon.png */; };
 		37648AED1AB7726D006058FE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648AEC1AB7726D006058FE /* Parse.framework */; };
 		37648AEF1AB7727F006058FE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648AEE1AB7727F006058FE /* Bolts.framework */; };
 		37648AF11AB772A2006058FE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648AF01AB772A2006058FE /* Accounts.framework */; };
@@ -39,7 +35,7 @@
 		F0AE96881AB7834E005F36D8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE96871AB7834E005F36D8 /* LoginVC.swift */; };
 		F0AE968E1AB8A99B005F36D8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE968D1AB8A99B005F36D8 /* Request.swift */; };
 		F0AE968F1AB8C0B8005F36D8 /* RequestTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE968B1AB88C1D005F36D8 /* RequestTVCell.swift */; };
-		F0AE96911AB8CE65005F36D8 /* MyRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE96901AB8CE65005F36D8 /* MyRequestsVC.swift */; };
+		F0AE96911AB8CE65005F36D8 /* UserRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE96901AB8CE65005F36D8 /* UserRequestsVC.swift */; };
 		FB1A38791AC173AA00512311 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A38781AC173AA00512311 /* User.swift */; };
 		FB1A387B1AC1744500512311 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A387A1AC1744500512311 /* Item.swift */; };
 		FB1A387D1AC1758A00512311 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A387C1AC1758A00512311 /* Message.swift */; };
@@ -58,10 +54,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3652186C1AC30744006C74EB /* facebookButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebookButton.png; path = ../../facebookButton.png; sourceTree = "<group>"; };
-		3652186D1AC30744006C74EB /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../logo.png; sourceTree = "<group>"; };
-		365218701AC311AB006C74EB /* informationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = informationIcon.png; path = ../../informationIcon.png; sourceTree = "<group>"; };
-		365218721AC31561006C74EB /* feedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = feedIcon.png; path = ../../feedIcon.png; sourceTree = "<group>"; };
 		37648AEC1AB7726D006058FE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		37648AEE1AB7727F006058FE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		37648AF01AB772A2006058FE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -95,7 +87,7 @@
 		F0AE96871AB7834E005F36D8 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		F0AE968B1AB88C1D005F36D8 /* RequestTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTVCell.swift; sourceTree = "<group>"; };
 		F0AE968D1AB8A99B005F36D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		F0AE96901AB8CE65005F36D8 /* MyRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRequestsVC.swift; sourceTree = "<group>"; };
+		F0AE96901AB8CE65005F36D8 /* UserRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestsVC.swift; sourceTree = "<group>"; };
 		FB1A38781AC173AA00512311 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FB1A387A1AC1744500512311 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FB1A387C1AC1758A00512311 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -192,10 +184,6 @@
 				F04BDD331AB76385001305C0 /* Images.xcassets */,
 				F04BDD351AB76385001305C0 /* LaunchScreen.xib */,
 				37648B0A1AB77343006058FE /* LocalSharing-Bridging-Header.h */,
-				3652186C1AC30744006C74EB /* facebookButton.png */,
-				365218721AC31561006C74EB /* feedIcon.png */,
-				3652186D1AC30744006C74EB /* logo.png */,
-				365218701AC311AB006C74EB /* informationIcon.png */,
 				F04BDD281AB76385001305C0 /* Supporting Files */,
 			);
 			path = LocalSharing;
@@ -243,7 +231,7 @@
 				F0AE968B1AB88C1D005F36D8 /* RequestTVCell.swift */,
 				F0AE96871AB7834E005F36D8 /* LoginVC.swift */,
 				F02877C21AB76A4000000DB7 /* RequestsVC.swift */,
-				F0AE96901AB8CE65005F36D8 /* MyRequestsVC.swift */,
+				F0AE96901AB8CE65005F36D8 /* UserRequestsVC.swift */,
 				F02877C41AB76A6200000DB7 /* ChatTVC.swift */,
 				F02877C61AB76AC400000DB7 /* ProfileVC.swift */,
 			);
@@ -348,12 +336,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F04BDD321AB76385001305C0 /* Main.storyboard in Resources */,
-				3652186F1AC30744006C74EB /* logo.png in Resources */,
-				365218731AC31561006C74EB /* feedIcon.png in Resources */,
 				F04BDD371AB76385001305C0 /* LaunchScreen.xib in Resources */,
 				F04BDD341AB76385001305C0 /* Images.xcassets in Resources */,
-				3652186E1AC30744006C74EB /* facebookButton.png in Resources */,
-				365218711AC311AB006C74EB /* informationIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +366,7 @@
 				FB1A387D1AC1758A00512311 /* Message.swift in Sources */,
 				FB1A38791AC173AA00512311 /* User.swift in Sources */,
 				F04BDD2B1AB76385001305C0 /* AppDelegate.swift in Sources */,
-				F0AE96911AB8CE65005F36D8 /* MyRequestsVC.swift in Sources */,
+				F0AE96911AB8CE65005F36D8 /* UserRequestsVC.swift in Sources */,
 				F0AE96881AB7834E005F36D8 /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

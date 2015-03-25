@@ -129,10 +129,10 @@ class ParseDAO: DAO
     {
         var messages: [Message] = []
         
-        messages.append(Message(request, from: getCurrentUser(), content: "Olá"))
-        messages.append(Message(request, from: getCurrentUser(), content: "Oi?"))
-        messages.append(Message(request, from: getCurrentUser(), content: "Você tá aí"))
-        messages.append(Message(request, from: getCurrentUser(), content: "Oieeee"))
+        messages.append(Message(request: request, from: getCurrentUser(), content: "Olá"))
+        messages.append(Message(request: request, from: getCurrentUser(), content: "Oi?"))
+        messages.append(Message(request: request, from: getCurrentUser(), content: "Você tá aí"))
+        messages.append(Message(request: request, from: getCurrentUser(), content: "Oieeee"))
         
         return messages
     }

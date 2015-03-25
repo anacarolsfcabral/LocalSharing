@@ -8,29 +8,35 @@
 
 import UIKit
 
-class ChatTVC: UITableViewController {
+class ChatTVC: UITableViewController
+{
+    var dealingsList: [Request] = []
+    var dao: DAO = ParseDAO()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
-        
+        dealingsList = dao.getDealingRequests(0, limit: 0)
         
     }
     
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 0
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return 0
