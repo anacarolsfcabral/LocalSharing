@@ -14,7 +14,6 @@ import UIKit
 
 class DAO
 {
-
     func getRequests (limit: Int?, page: Int?) -> [Request]
     {
         var resultTemp: [Request] = []
