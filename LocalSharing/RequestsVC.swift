@@ -8,18 +8,18 @@
 
 import UIKit
 
-class RequestsVC: UITableViewController {
+class RequestsVC: UITableViewController
+{
     var requestsList: [Request] = []
     var dao = DAO()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         requestsList = dao.getRequests(0, page: 0)
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        
-        
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
         
