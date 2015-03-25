@@ -8,7 +8,7 @@
 
 // DAO = Data Access Object
 
-// Nessa classe...
+// Nessa classe... EXPLICA TUDO SOBRE O DAO AQUI!
 
 import UIKit
 
