@@ -10,11 +10,12 @@ import UIKit
 
 class RequestsVC: UITableViewController {
     var requestsList: [Request] = []
-
+    var dao = DAO()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getRequests()
+        requestsList = dao.getRequests(0, page: 0)
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
@@ -22,46 +23,20 @@ class RequestsVC: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
         
-        
-        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     func insertNewObject(sender: AnyObject) {
-        
-        requests.insertObject(NSNull(), atIndex: 0)
+        //requestsList.insert(NSNull(), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
-        var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestsTVCell
+        var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
         cell.textField.becomeFirstResponder()
-    }
-
-//    func getRequests ()
-//    {
-//    
-//        PFCloud.callFunctionInBackground("getRequests", withParameters:[:]) {
-//            (result: AnyObject!, error: NSError!) -> Void in
-//            if error == nil {
-//                let results = result as NSMutableArray
-//                for result in results {
-//                    let item = result["item"] as PFObject
-//                    let author = result["author"] as PFObject
-//                    let request = Pedido()
-//                    
-//                    pedido.nomeItem = item["name"] as String
-//                    pedido.autorPedido = autor["name"] as String
-//                    pedido.autorFoto = autor["photo"] as String
-//                    self.pedidosApp.addObject(pedido)
-//                }
-//                self.tableView.reloadData()
-//                
-//            }
-//        }
-    
-    
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

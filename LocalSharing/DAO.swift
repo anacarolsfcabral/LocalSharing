@@ -12,9 +12,11 @@
 
 import UIKit
 
-class DAO {
+class DAO
+{
     
-    func getRequests (limit: Int?, page: Int?) -> [Request] {
+    func getRequests (limit: Int?, page: Int?) -> [Request]
+    {
         var resultTemp: [Request] = []
         var user1 = User(id: "01", name: "Fábio", picture: UIImage(named: "foto-Fabio"), requestLimit: 3)
         var user2 = User(id: "02", name: "Lucas", picture: UIImage(named: "foto-Lucas"), requestLimit: 3)

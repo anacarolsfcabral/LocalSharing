@@ -9,36 +9,29 @@
 import UIKit
 
 class MyRequestsVC: UITableViewController {
-    
-    var requests:NSMutableArray = NSMutableArray()
+    var myRequestsList: [Request] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
                 
-                PFCloud.callFunctionInBackground("getUserRequests", withParameters:[:]) {
-                    (result: AnyObject!, error: NSError!) -> Void in
-                    if error == nil {
-                        let results = result as NSMutableArray
-                        for result in results {
-                            let item = result["item"] as PFObject
-                            let autor = result["author"] as PFObject
-                            let pedido = Pedido()
-                            
-                            pedido.nomeItem = item["name"] as String
-                            pedido.autorPedido = autor["name"] as String
-                            pedido.autorFoto = autor["photo"] as String
-                            self.pedidosApp.addObject(pedido)
-                        }
-                        self.tableView.reloadData()
-                        
-                    }
-                }
+//                PFCloud.callFunctionInBackground("getUserRequests", withParameters:[:]) {
+//                    (result: AnyObject!, error: NSError!) -> Void in
+//                    if error == nil {
+//                        let results = result as NSMutableArray
+//                        for result in results {
+//                            let item = result["item"] as PFObject
+//                            let autor = result["author"] as PFObject
+//                            let pedido = Pedido()
+//                            
+//                            pedido.nomeItem = item["name"] as String
+//                            pedido.autorPedido = autor["name"] as String
+//                            pedido.autorFoto = autor["photo"] as String
+//                            self.pedidosApp.addObject(pedido)
+//                        }
+//                        self.tableView.reloadData()
+//                        
+//                    }
+//                }
         
     }
 
@@ -47,7 +40,6 @@ class MyRequestsVC: UITableViewController {
  
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
@@ -56,36 +48,21 @@ class MyRequestsVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return pedidosApp.count
+        return myRequestsList.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as RequestsTVCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as RequestTVCell
         
-        let pedido : Pedido? = self.pedidosApp[indexPath.item] as? Pedido
+        let request : Request = self.myRequestsList[indexPath.item]
         
-        if pedido == nil
-        {
-            let currentUser = PFUser.currentUser() as PFUser
-            
-            cell.textField.userInteractionEnabled = true
-            cell.nomeUsuario.text = currentUser["name"] as? String
-            var str = currentUser["photo"] as String
-            var url = NSURL(string: str)
-            var data = NSData(contentsOfURL: url!)
-            cell.fotoUsuario.image = UIImage(data: data!)
-            
-        }
-        else
-        {
-            cell.textField?.text = pedido?.nomeItem
-            cell.nomeUsuario?.text = pedido?.autorPedido
-            var str = pedido?.autorFoto
-            var url = NSURL(string: str!)
-            var data = NSData(contentsOfURL: url!)
-            cell.fotoUsuario.image = UIImage(data: data!)
-        }
+        
+        cell.textField?.text = request.item.name
+        cell.userName?.text = request.author.name
+        cell.userPicture.image = request.author.picture
+        
         
         return cell
     }
+}

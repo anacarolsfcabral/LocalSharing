@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2cG-0j-seR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2cG-0j-seR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -46,6 +46,8 @@
                     <connections>
                         <outlet property="fotoUsuario" destination="Et1-K3-jXX" id="Ilk-GG-lHI"/>
                         <outlet property="nomeUsuario" destination="q11-F5-GHE" id="xhr-JY-HKG"/>
+                        <outlet property="userName" destination="q11-F5-GHE" id="zQq-ek-4rZ"/>
+                        <outlet property="userPicture" destination="Et1-K3-jXX" id="Bet-6I-QSx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GqJ-39-KvS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,8 +73,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by ChatTVC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="192" y="329" width="215.5" height="17"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by ChatTVC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
+                                <rect key="frame" x="234.5" y="329" width="130.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -218,6 +220,8 @@
                                     <outlet property="fotoUsuario" destination="epS-Nu-YoO" id="q3o-WH-7Rn"/>
                                     <outlet property="nomeUsuario" destination="pmC-Ig-Goo" id="CBO-05-r1M"/>
                                     <outlet property="textField" destination="Wg7-xw-JL8" id="qpI-TJ-Psy"/>
+                                    <outlet property="userName" destination="pmC-Ig-Goo" id="gE9-9S-T5y"/>
+                                    <outlet property="userPicture" destination="epS-Nu-YoO" id="4dV-Yw-5BX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -301,6 +305,8 @@
                                     <outlet property="fotoUsuario" destination="HiN-YH-Qtz" id="xcW-EI-EU4"/>
                                     <outlet property="nomeUsuario" destination="3qk-JN-xrb" id="3Hn-g1-b3w"/>
                                     <outlet property="textField" destination="tZW-qa-cmC" id="JBB-Yj-rHc"/>
+                                    <outlet property="userName" destination="3qk-JN-xrb" id="7lx-jf-mFg"/>
+                                    <outlet property="userPicture" destination="HiN-YH-Qtz" id="22M-oY-GAp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
