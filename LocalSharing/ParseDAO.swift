@@ -18,8 +18,29 @@ class ParseDAO: DAO
     {
         let user: User = User(name: "Fábio", picture: UIImage(named: "foto-Fabio"), requestLimit: 3)
         
+//        PFFacebookUtils.logInWithPermissions(["public_profile"],
+//        {
+//            (user: PFUser!, error: NSError!) -> Void in
+//            if user
+//            {
+//                if user.isNew
+//                {
+//                    println("User signed up and logged in through Facebook!")
+//                }
+//                else
+//                {
+//                    println("User logged in through Facebook!")
+//                }
+//            }
+//            else
+//            {
+//                println("Uh oh. The user cancelled the Facebook login.")
+//            }
+//        })
+        
         return user
     }
+    
     
     func getCurrentUser() -> User
     {
