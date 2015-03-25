@@ -62,7 +62,7 @@ class RequestsVC: UITableViewController
         
         cell.textField?.text = request.item.name
         cell.userName?.text = request.author.name
-        cell.userPicture.image = request.author.picture
+        cell.userPicture?.image = request.author.picture
         
         return cell
     }

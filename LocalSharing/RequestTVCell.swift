@@ -20,7 +20,7 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     {
         super.awakeFromNib()
         
-        userPicture = self.imageViewShapedAsHexagon()
+        //userPicture = self.imageViewShapedAsHexagon()
         self.textField.delegate = self
     }
     
