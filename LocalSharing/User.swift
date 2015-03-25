@@ -8,7 +8,8 @@
 
 import UIKit
 
-class User {
+class User
+{
     var id: String!
     var name: String!
     var picture: UIImage!
@@ -18,8 +19,8 @@ class User {
 //        
 //    }
     
-    init (id: String!, name: String!, picture: UIImage!, requestLimit: Int!) {
-        
+    init (id: String!, name: String!, picture: UIImage!, requestLimit: Int!)
+    {
         self.id = id
         self.name = name
         self.picture = picture

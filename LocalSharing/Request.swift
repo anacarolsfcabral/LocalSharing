@@ -21,24 +21,21 @@ class Request {
 //    func getExpireDate() -> NSDate {
 //}
 
-    init (id: String!, author: User!, helper: User?, item: Item!, lastMessage: [Message], dealing: Bool!, closed: Bool!, expired: Bool!) {
-    
+    init (id: String!, author: User!, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!)
+    {
         self.id = id
         self.author = author
-        self.helper = helper
         self.item = item
-        self.lastMessage = lastMessage
         self.dealing = dealing
         self.closed = closed
         self.expired = expired
+    }
         
-        convenience init (id: String!, author: String!, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!) {
-            
-            self.id = id
-            self.author = author
-            self.item = item
-            self.dealing = dealing
-            self.closed = closed
-            self.expired = expired
-        }
+    convenience init (id: String!, author: User!, helper: User?, item: Item!, lastMessage: [Message]?, dealing: Bool!, closed: Bool!, expired: Bool!)
+    {
+        self.lastMessage = lastMessage
+        self.helper = helper
+        
+        self.init (id, author: author, item: item, dealing: dealing, closed: closed, expired: expired);
+    }
 }
