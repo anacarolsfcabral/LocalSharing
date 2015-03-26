@@ -10,18 +10,16 @@ import UIKit
 
 class Message
 {
-    var id: String!
+    var id: String?
     var request: Request!
     var from: User!
     var content: String!
-    var createdAt: NSDate!
+    var createdAt: NSDate?
     
-    init (id: String!, request: Request!, from: User!, content: String!, createdAt: NSDate!)
+    init (request: Request!, from: User!, content: String!)
     {
-        self.id = id
         self.request = request
         self.from = from
         self.content = content
-        self.createdAt = createdAt
     }
 }

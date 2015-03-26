@@ -20,7 +20,7 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     {
         super.awakeFromNib()
         
-        userPicture = self.imageViewShapedAsHexagon()
+        //userPicture = self.imageViewShapedAsHexagon()
         self.textField.delegate = self
     }
     
@@ -81,12 +81,10 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
             {
             (result: AnyObject!, error: NSError!) -> Void in
             
-            if error == nil
-            {
+            if error == nil{
                 
             }
-            else
-            {
+            else{
                 println(error)
             }
         }

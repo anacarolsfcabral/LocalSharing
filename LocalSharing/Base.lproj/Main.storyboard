@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2cG-0j-seR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -44,8 +44,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="aBS-vO-yJe"/>
                     <connections>
-                        <outlet property="fotoUsuario" destination="Et1-K3-jXX" id="Ilk-GG-lHI"/>
-                        <outlet property="nomeUsuario" destination="q11-F5-GHE" id="xhr-JY-HKG"/>
                         <outlet property="userName" destination="q11-F5-GHE" id="zQq-ek-4rZ"/>
                         <outlet property="userPicture" destination="Et1-K3-jXX" id="Bet-6I-QSx"/>
                     </connections>
@@ -112,14 +110,14 @@
                                     <constraint firstAttribute="height" constant="47" id="PtA-2z-bBl"/>
                                     <constraint firstAttribute="width" constant="246" id="WuA-9C-iGr"/>
                                 </constraints>
-                                <state key="normal" image="facebookButton.png">
+                                <state key="normal" image="foto-Giancarlo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButton:" destination="2cG-0j-seR" eventType="touchUpInside" id="PqD-y9-b8O"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="1nQ-20-Qoh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foto-Pietro" translatesAutoresizingMaskIntoConstraints="NO" id="1nQ-20-Qoh">
                                 <rect key="frame" x="197" y="133" width="206" height="190"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="190" id="OJC-MI-nWL"/>
@@ -138,7 +136,7 @@
                                     <constraint firstAttribute="width" constant="23" id="6yh-kF-OFC"/>
                                     <constraint firstAttribute="height" constant="24" id="uIy-jl-yn9"/>
                                 </constraints>
-                                <state key="normal" image="informationIcon.png">
+                                <state key="normal" image="foto-Pietro">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -250,8 +248,6 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="fotoUsuario" destination="epS-Nu-YoO" id="q3o-WH-7Rn"/>
-                                    <outlet property="nomeUsuario" destination="pmC-Ig-Goo" id="CBO-05-r1M"/>
                                     <outlet property="textField" destination="Wg7-xw-JL8" id="qpI-TJ-Psy"/>
                                     <outlet property="userName" destination="pmC-Ig-Goo" id="gE9-9S-T5y"/>
                                     <outlet property="userPicture" destination="epS-Nu-YoO" id="4dV-Yw-5BX"/>
@@ -263,7 +259,13 @@
                             <outlet property="delegate" destination="2SC-Pi-LdL" id="IO0-sc-wfY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Requests" id="04l-0H-mrq"/>
+                    <navigationItem key="navigationItem" title="Requests" id="04l-0H-mrq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Ft-ij-iG0">
+                            <connections>
+                                <action selector="insertNewRequest:" destination="2SC-Pi-LdL" id="Nmx-CC-M8M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD6-yP-bxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -289,7 +291,7 @@
         <!--My Requests-->
         <scene sceneID="d1m-nR-fut">
             <objects>
-                <tableViewController id="stp-vz-bpW" customClass="MyRequestsVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="stp-vz-bpW" customClass="UserRequestsVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="SIx-XU-fyC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,8 +337,6 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="fotoUsuario" destination="HiN-YH-Qtz" id="xcW-EI-EU4"/>
-                                    <outlet property="nomeUsuario" destination="3qk-JN-xrb" id="3Hn-g1-b3w"/>
                                     <outlet property="textField" destination="tZW-qa-cmC" id="JBB-Yj-rHc"/>
                                     <outlet property="userName" destination="3qk-JN-xrb" id="7lx-jf-mFg"/>
                                     <outlet property="userPicture" destination="HiN-YH-Qtz" id="22M-oY-GAp"/>
@@ -374,9 +374,8 @@
     </scenes>
     <resources>
         <image name="check" width="22" height="22"/>
-        <image name="facebookButton.png" width="504" height="97"/>
-        <image name="informationIcon.png" width="134" height="130"/>
-        <image name="logo.png" width="389" height="347"/>
+        <image name="foto-Giancarlo" width="380" height="380"/>
+        <image name="foto-Pietro" width="380" height="380"/>
         <image name="nop" width="22" height="22"/>
         <image name="second" width="30" height="30"/>
     </resources>
