@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2cG-0j-seR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -110,14 +110,14 @@
                                     <constraint firstAttribute="height" constant="47" id="PtA-2z-bBl"/>
                                     <constraint firstAttribute="width" constant="246" id="WuA-9C-iGr"/>
                                 </constraints>
-                                <state key="normal" image="foto-Giancarlo">
+                                <state key="normal" image="facebookButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButton:" destination="2cG-0j-seR" eventType="touchUpInside" id="PqD-y9-b8O"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foto-Pietro" translatesAutoresizingMaskIntoConstraints="NO" id="1nQ-20-Qoh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="1nQ-20-Qoh">
                                 <rect key="frame" x="197" y="133" width="206" height="190"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="190" id="OJC-MI-nWL"/>
@@ -136,7 +136,7 @@
                                     <constraint firstAttribute="width" constant="23" id="6yh-kF-OFC"/>
                                     <constraint firstAttribute="height" constant="24" id="uIy-jl-yn9"/>
                                 </constraints>
-                                <state key="normal" image="foto-Pietro">
+                                <state key="normal" image="informationIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -170,6 +170,15 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.015686274509803921" green="0.59215686274509804" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.015686274509803921" green="0.59215686274509804" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="selectedImageTintColor">
+                                <color key="value" red="0.011764705882352941" green="0.41568627450980394" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="defaultImageTintColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="zpv-mk-cTv" kind="relationship" relationship="viewControllers" id="020-TQ-mZ0"/>
@@ -271,11 +280,13 @@
             </objects>
             <point key="canvasLocation" x="1506" y="-174"/>
         </scene>
-        <!--Requests-->
+        <!--Navigation Controller-->
         <scene sceneID="FVg-Jm-dcx">
             <objects>
                 <navigationController id="zpv-mk-cTv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Requests" image="check" id="9Xf-ny-VuC"/>
+                    <tabBarItem key="tabBarItem" title="" image="feedIcon" id="9Xf-ny-VuC">
+                        <inset key="imageInsets" minX="0.0" minY="8" maxX="6" maxY="0.0"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uvf-D2-YR7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -374,9 +385,12 @@
     </scenes>
     <resources>
         <image name="check" width="22" height="22"/>
-        <image name="foto-Giancarlo" width="380" height="380"/>
-        <image name="foto-Pietro" width="380" height="380"/>
+        <image name="facebookButton.png" width="504" height="97"/>
+        <image name="feedIcon" width="44" height="44"/>
+        <image name="informationIcon.png" width="134" height="130"/>
+        <image name="logo.png" width="389" height="347"/>
         <image name="nop" width="22" height="22"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
