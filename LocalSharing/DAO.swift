@@ -10,25 +10,25 @@ import UIKit
 
 protocol DAO {
     
-    func login() -> User
+    func login() -> (user: User, error: NSError)
     
     func getCurrentUser() -> User
     
-    func createRequest(item: Item!) -> Request
+    func createRequest(item: Item!) -> (request: Request, error: NSError)
     
-    func getRequests(page: Int?, limit: Int?) -> [Request]
+    func getRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError)
     
-    func getUserRequests(page: Int?, limit: Int?) -> [Request]
+    func getUserRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError)
     
-    func getDealingRequests(page: Int?, limit: Int?) -> [Request]
+    func getDealingRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError)
     
-    func respondRequest(request: Request!, hasItem: Bool!) -> Request
+    func respondRequest(request: Request!, hasItem: Bool!) -> (request: Request, error: NSError)
     
-    func closeRequest(request: Request!, successful: Bool!) -> Request
+    func closeRequest(request: Request!, successful: Bool!) -> (request: Request, error: NSError)
     
-    func cancelDeal(request: Request!) -> Request
+    func cancelDeal(request: Request!) -> (request: Request, error: NSError)
     
-    func sendMessage(request: Request!, messageContent: String!) -> Message
+    func sendMessage(request: Request!, messageContent: String!) -> (message: Message, error: NSError)
     
-    func getMessages(request: Request!, page: Int?, limit: Int?) -> [Message]
+    func getMessages(request: Request!, page: Int?, limit: Int?) -> (messages: [Message], error: NSError)
 }
