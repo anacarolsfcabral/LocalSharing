@@ -16,8 +16,8 @@ class ParseDAO: DAO
 {
     func login() -> (user: User, error: NSError)
     {
-        var user: User
-        var error: NSError
+        var user: User!
+        var error: NSError!
         
         PFFacebookUtils.logInWithPermissions(["public_profile"],
         {
@@ -56,8 +56,8 @@ class ParseDAO: DAO
     
     func createRequest(item: Item!) -> (request: Request, error: NSError)
     {
-        var request: Request
-        var error: NSError
+        var request: Request!
+        var error: NSError!
         
         PFCloud.callFunctionInBackground("request", withParameters: ["item": item.name])
         {
@@ -91,14 +91,14 @@ class ParseDAO: DAO
     func getRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError)
     {
         var requests: [Request] = []
-        var error: NSError
+        var error: NSError!
         
-        PFCloud.callFunctionInBackground("getRequests", withParameters: ["limit": limit, "page": page])
+        PFCloud.callFunctionInBackground("getRequests", withParameters: ["limit": limit!, "page": page!])
         {
             (pfResults: AnyObject!, pfError: NSError!) -> Void in
             if pfError == nil
             {
-                for pfResult in pfResults
+                for pfResult in pfResults as [AnyObject]
                 {
                     let pfRequest = pfResult as PFObject
                     let pfAuthor = pfRequest["author"] as PFObject
@@ -113,7 +113,7 @@ class ParseDAO: DAO
                     
                     var item: Item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
                     
-                    request = Request(id: pfRequest.objectId, author: author, item: item, dealing: false, closed: false, expired: false)
+                    let request = Request(id: pfRequest.objectId, author: author, item: item, dealing: false, closed: false, expired: false)
                     
                     requests.append(request)
                 }
@@ -130,7 +130,7 @@ class ParseDAO: DAO
     func getUserRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError)
     {
         var requests: [Request] = []
-        var error: NSError
+        var error: NSError!
         
         var item1 = Item(id: "01", name: "Livro de Design Patterns")
         var item2 = Item(id: "02", name: "Esmalte")
@@ -148,7 +148,7 @@ class ParseDAO: DAO
     func getDealingRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError)
     {
         var requests: [Request] = []
-        var error: NSError
+        var error: NSError!
         
         var user1 = User(id: "01", name: "Fábio", picture: UIImage(named: "foto-Fabio"), requestLimit: 3)
         var user2 = User(id: "01", name: "Lucas", picture: UIImage(named: "foto-Lucas"), requestLimit: 3)
@@ -171,7 +171,7 @@ class ParseDAO: DAO
     func respondRequest(request: Request!, hasItem: Bool!) -> (request: Request, error: NSError)
     {
         request.dealing = false
-        var error: NSError
+        var error: NSError!
         
         return (request, error)
     }
@@ -179,7 +179,7 @@ class ParseDAO: DAO
     func closeRequest(request: Request!, successful: Bool!) -> (request: Request, error: NSError)
     {
         request.closed = true
-        var error: NSError
+        var error: NSError!
         
         return (request, error)
     }
@@ -187,7 +187,7 @@ class ParseDAO: DAO
     func cancelDeal(request: Request!) -> (request: Request, error: NSError)
     {
         request.dealing = false
-        var error: NSError
+        var error: NSError!
         
         return (request, error)
     }
@@ -195,7 +195,7 @@ class ParseDAO: DAO
     func sendMessage(request: Request!, messageContent: String!) -> (message: Message, error: NSError)
     {
         let message: Message = Message(id: "01", request: request, from: getCurrentUser(), content: messageContent)
-        var error: NSError
+        var error: NSError!
         
         return (message, error)
     }
@@ -203,7 +203,7 @@ class ParseDAO: DAO
     func getMessages(request: Request!, page: Int?, limit: Int?) -> (messages: [Message], error: NSError)
     {
         var messages: [Message] = []
-        var error: NSError
+        var error: NSError!
         
         messages.append(Message(id: "01", request: request, from: getCurrentUser(), content: "Olá"))
         messages.append(Message(id: "01", request: request, from: getCurrentUser(), content: "Oi?"))
