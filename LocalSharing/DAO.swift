@@ -30,4 +30,6 @@ protocol DAO {
     func sendMessage(request: Request!, messageContent: String!) -> (message: Message?, error: NSError?)
     
     func getMessages(request: Request!, page: Int?, limit: Int?) -> (messages: [Message], error: NSError?)
+    
+    func getItems(string: String!, limit: Int?) -> (items: [Item], error: NSError?)
 }

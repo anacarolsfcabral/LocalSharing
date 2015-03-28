@@ -13,8 +13,7 @@
 import UIKit
 
 class ParseDAO: DAO
-{
-    
+{    
     func login() -> (user: User?, error: NSError?)
     {
         var user: User?
@@ -211,6 +210,14 @@ class ParseDAO: DAO
         messages.append(Message(id: "01", request: request, from: getCurrentUser(), content: "Oieeee"))
         
         return (messages, error)
+    }
+    
+    func getItems(string: String!, limit: Int?) -> (items: [Item], error: NSError?)
+    {
+        var items: [Item] = []
+        var error: NSError?
+        
+        return (items, error)
     }
 
 }
