@@ -24,6 +24,7 @@
 		37648B091AB77303006058FE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B081AB77303006058FE /* libsqlite3.dylib */; };
 		37648B0E1AB775ED006058FE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B0D1AB775ED006058FE /* FacebookSDK.framework */; };
 		37648B101AB78132006058FE /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B0F1AB78132006058FE /* ParseFacebookUtils.framework */; };
+		37967E581AC7611B00B85EF4 /* DAOFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37967E571AC7611B00B85EF4 /* DAOFactory.swift */; };
 		F02877C31AB76A4000000DB7 /* RequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C21AB76A4000000DB7 /* RequestsVC.swift */; };
 		F02877C51AB76A6200000DB7 /* ChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C41AB76A6200000DB7 /* ChatTVC.swift */; };
 		F02877C71AB76AC400000DB7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C61AB76AC400000DB7 /* ProfileVC.swift */; };
@@ -72,6 +73,7 @@
 		37648B0A1AB77343006058FE /* LocalSharing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalSharing-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		37648B0D1AB775ED006058FE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		37648B0F1AB78132006058FE /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		37967E571AC7611B00B85EF4 /* DAOFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOFactory.swift; sourceTree = "<group>"; };
 		F02877C21AB76A4000000DB7 /* RequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsVC.swift; sourceTree = "<group>"; };
 		F02877C41AB76A6200000DB7 /* ChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTVC.swift; sourceTree = "<group>"; };
 		F02877C61AB76AC400000DB7 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				FB1A38871AC354CD00512311 /* ParseDAO.swift */,
+				37967E571AC7611B00B85EF4 /* DAOFactory.swift */,
 				FB1A387E1AC1772500512311 /* DAO.swift */,
 			);
 			name = DAO;
@@ -368,6 +371,7 @@
 				F04BDD2B1AB76385001305C0 /* AppDelegate.swift in Sources */,
 				F0AE96911AB8CE65005F36D8 /* UserRequestsVC.swift in Sources */,
 				F0AE96881AB7834E005F36D8 /* LoginVC.swift in Sources */,
+				37967E581AC7611B00B85EF4 /* DAOFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

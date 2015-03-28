@@ -6,10 +6,6 @@
 //  Copyright (c) 2015 Ana Carolina Cabral. All rights reserved.
 //
 
-// DAO = Data Access Object
-
-// Nessa classe... EXPLICA TUDO SOBRE O DAO AQUI!
-
 import UIKit
 
 class ParseDAO: DAO
