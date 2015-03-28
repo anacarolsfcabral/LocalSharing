@@ -14,17 +14,16 @@ class Request {
     var helper: User?
     var item: Item!
     var lastMessage: [Message]! = []
-    var dealing: Bool!
-    var closed: Bool!
-    var expired: Bool!
+    var dealing: Bool! = false
+    var closed: Bool! = false
+    var expired: Bool! = false
+    var expiresAt: NSDate!
 
-    init(id: String!, author: User!, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!)
+    init(id: String!, author: User!, item: Item!, expiresAt: NSDate!)
     {
         self.id = id
         self.author = author
         self.item = item
-        self.dealing = dealing
-        self.closed = closed
-        self.expired = expired
+        self.expiresAt = expiresAt
     }
 }
