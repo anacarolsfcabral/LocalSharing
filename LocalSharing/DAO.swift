@@ -5,8 +5,7 @@
 //  Created by Giancarlo Diaz Cavalcante on 3/25/15.
 //  Copyright (c) 2015 Ana Carolina Cabral. All rights reserved.
 //
-
-import UIKit
+//  This protocol acts as a contract between back-end and front-end
 
 protocol DAO {
     
