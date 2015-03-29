@@ -8,7 +8,8 @@
 
 import UIKit
 
-class Request {
+class Request
+{
     var id: String!
     var author: User!
     var helper: User?
