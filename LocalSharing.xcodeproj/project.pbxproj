@@ -181,11 +181,11 @@
 				FB1A38861AC3543E00512311 /* DAO */,
 				FB1A38771AC16F7B00512311 /* Model */,
 				FB1A38801AC1793A00512311 /* Controller */,
-				F04BDD2A1AB76385001305C0 /* AppDelegate.swift */,
 				FB1A38811AC1867E00512311 /* View */,
-				F04BDD331AB76385001305C0 /* Images.xcassets */,
+				F04BDD2A1AB76385001305C0 /* AppDelegate.swift */,
 				F04BDD351AB76385001305C0 /* LaunchScreen.xib */,
 				37648B0A1AB77343006058FE /* LocalSharing-Bridging-Header.h */,
+				F04BDD331AB76385001305C0 /* Images.xcassets */,
 				F04BDD281AB76385001305C0 /* Supporting Files */,
 			);
 			path = LocalSharing;
@@ -251,9 +251,9 @@
 		FB1A38861AC3543E00512311 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				FB1A38871AC354CD00512311 /* ParseDAO.swift */,
-				37967E571AC7611B00B85EF4 /* DAOFactory.swift */,
 				FB1A387E1AC1772500512311 /* DAO.swift */,
+				37967E571AC7611B00B85EF4 /* DAOFactory.swift */,
+				FB1A38871AC354CD00512311 /* ParseDAO.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";

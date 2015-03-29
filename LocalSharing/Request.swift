@@ -13,7 +13,7 @@ class Request {
     var author: User!
     var helper: User?
     var item: Item!
-    var lastMessage: [Message]! = []
+    var messages: [Message]! = []
     var dealing: Bool! = false
     var closed: Bool! = false
     var expired: Bool! = false

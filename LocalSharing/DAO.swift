@@ -13,7 +13,7 @@ protocol DAO {
     
     func getCurrentUser() -> User
     
-    func createRequest(item: Item!) -> (request: Request?, error: NSError?)
+    func createRequest(item: String!) -> (request: Request?, error: NSError?)
     
     func getRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError?)
     
@@ -21,11 +21,11 @@ protocol DAO {
     
     func getDealingRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError?)
     
-    func respondRequest(request: Request!, hasItem: Bool!) -> (request: Request?, error: NSError?)
+    func respondRequest(request: Request!, hasItem: Bool!) -> (request: Request, error: NSError?)
     
-    func closeRequest(request: Request!, successful: Bool!) -> (request: Request?, error: NSError?)
+    func closeRequest(request: Request!, successful: Bool!) -> (request: Request, error: NSError?)
     
-    func cancelDeal(request: Request!) -> (request: Request?, error: NSError?)
+    func cancelDeal(request: Request!) -> (request: Request, error: NSError?)
     
     func sendMessage(request: Request!, messageContent: String!) -> (message: Message?, error: NSError?)
     

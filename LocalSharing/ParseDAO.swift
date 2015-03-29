@@ -10,6 +10,7 @@ import UIKit
 
 class ParseDAO: DAO
 {    
+    // Login
     func login() -> (user: User?, error: NSError?)
     {
         var user: User?
@@ -20,11 +21,13 @@ class ParseDAO: DAO
             (pfUser: PFUser!, pfError: NSError!) -> Void in
             if (pfUser != nil)
             {
-                let name = pfUser["name"] as String
-                let picture = UIImage(data: NSData(contentsOfURL: NSURL(string: pfUser["photo"] as String)!)!)
-                let requestLimit = pfUser["requestLimit"] as Int
-                
-                user = User(id: pfUser.objectId, name: name, picture: picture, requestLimit: requestLimit)
+                // Instantiate user as User
+                user = User(
+                    id: pfUser.objectId,
+                    name: pfUser["name"] as String,
+                    picture: pfUser["photo"] as String,
+                    requestLimit: pfUser["requestLimit"] as Int
+                )
             }
             else
             {
@@ -35,44 +38,57 @@ class ParseDAO: DAO
         return (user, error)
     }
     
+    // Get current user
     func getCurrentUser() -> User
     {
         var user: User
         var pfUser = PFUser.currentUser()
         
-        let name = pfUser["name"] as String
-        let picture = UIImage(data: NSData(contentsOfURL: NSURL(string: pfUser["photo"] as String)!)!)
-        let requestLimit = pfUser["requestLimit"] as Int
-        
-        user = User(id: pfUser.objectId, name: name, picture: picture, requestLimit: requestLimit)
+        // Instantiate user as User
+        user = User(
+            id: pfUser.objectId,
+            name: pfUser["name"] as String,
+            picture: pfUser["photo"] as String,
+            requestLimit: pfUser["requestLimit"] as Int
+        )
         
         return user
     }
     
-    func createRequest(item: Item!) -> (request: Request?, error: NSError?)
+    // Create request
+    func createRequest(item: String!) -> (request: Request?, error: NSError?)
     {
         var request: Request?
         var error: NSError?
         
-        PFCloud.callFunctionInBackground("request", withParameters: ["item": item.name])
+        PFCloud.callFunctionInBackground("createRequest", withParameters: ["item": item])
         {
-            (pfResult: AnyObject!, pfError: NSError!) -> Void in
+            (pfResult: AnyObject!, pfError: NSError?) -> Void in
             if pfError == nil
             {
-                let pfRequest = pfResult as PFObject
-                let pfAuthor = pfRequest["author"] as PFObject
-                let pfItem = pfRequest["item"] as PFObject
+                // Get PFObject's
+                let pfRequest   = pfResult as PFObject
+                let pfAuthor    = pfRequest["author"] as PFObject
+                let pfItem      = pfRequest["item"] as PFObject
                 
-                var author: User
-                let authorName = pfAuthor["name"] as String
-                let authorPicture = UIImage(data: NSData(contentsOfURL: NSURL(string: pfAuthor["photo"] as String)!)!)
-                let requestLimit = pfAuthor["requestLimit"] as Int
+                // Instantiate author as User
+                let author = User(
+                    id: pfAuthor.objectId,
+                    name: pfAuthor["name"] as String,
+                    picture: pfAuthor["photo"] as String,
+                    requestLimit: pfAuthor["requestLimit"] as Int
+                )
                 
-                author = User(id: pfAuthor.objectId, name: authorName, picture: authorPicture, requestLimit: requestLimit)
+                // Instantiate item as Item
+                let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
                 
-                var item: Item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
-                
-                request = Request(id: pfRequest.objectId, author: author, item: item, dealing: false, closed: false, expired: false)
+                // Finally, instantiate request as Request
+                request = Request(
+                    id: pfRequest.objectId,
+                    author: author,
+                    item: item,
+                    expiresAt: pfRequest["expiresAt"] as NSDate
+                )
             }
             else
             {
@@ -83,32 +99,42 @@ class ParseDAO: DAO
         return (request, error)
     }
     
+    // Get requests
     func getRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError?)
     {
         var requests: [Request] = []
         var error: NSError?
         
-        PFCloud.callFunctionInBackground("getRequests", withParameters: ["limit": limit!, "page": page!])
+        PFCloud.callFunctionInBackground("getRequests", withParameters: ["page": page ?? NSNull(), "limit": limit ?? NSNull()])
         {
             (pfResults: AnyObject!, pfError: NSError!) -> Void in
             if pfError == nil
             {
                 for pfResult in pfResults as [AnyObject]
                 {
-                    let pfRequest = pfResult as PFObject
-                    let pfAuthor = pfRequest["author"] as PFObject
-                    let pfItem = pfRequest["item"] as PFObject
+                    // Get PFObject's
+                    let pfRequest   = pfResult as PFObject
+                    let pfAuthor    = pfRequest["author"] as PFObject
+                    let pfItem      = pfRequest["item"] as PFObject
                     
-                    var author: User
-                    let authorName = pfAuthor["name"] as String
-                    let authorPicture = UIImage(data: NSData(contentsOfURL: NSURL(string: pfAuthor["photo"] as String)!)!)
-                    let requestLimit = pfAuthor["requestLimit"] as Int
+                    // Instantiate author as User
+                    let author = User(
+                        id: pfAuthor.objectId,
+                        name: pfAuthor["name"] as String,
+                        picture: pfAuthor["photo"] as String,
+                        requestLimit: pfAuthor["requestLimit"] as Int
+                    )
                     
-                    author = User(id: pfAuthor.objectId, name: authorName, picture: authorPicture, requestLimit: requestLimit)
+                    // Instantiate item as Item
+                    let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
                     
-                    var item: Item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
-                    
-                    let request = Request(id: pfRequest.objectId, author: author, item: item, dealing: false, closed: false, expired: false)
+                    // Finally, instantiate request as Request
+                    let request = Request(
+                        id: pfRequest.objectId,
+                        author: author,
+                        item: item,
+                        expiresAt: pfRequest["expiresAt"] as NSDate
+                    )
                     
                     requests.append(request)
                 }
@@ -122,96 +148,432 @@ class ParseDAO: DAO
         return (requests, error)
     }
     
+    // Get user requests
     func getUserRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError?)
     {
         var requests: [Request] = []
         var error: NSError?
         
-        var item1 = Item(id: "01", name: "Livro de Design Patterns")
-        var item2 = Item(id: "02", name: "Esmalte")
-        var item3 = Item(id: "03", name: "Calculadora")
-        var item4 = Item(id: "04", name: "Remédio para dor de cabeça")
-        
-        requests.append(Request(id: "01", author: getCurrentUser(), item: item1, dealing: false, closed: false, expired: false))
-        requests.append(Request(id: "01", author: getCurrentUser(), item: item2, dealing: false, closed: false, expired: false))
-        requests.append(Request(id: "01", author: getCurrentUser(), item: item3, dealing: false, closed: false, expired: false))
-        requests.append(Request(id: "01", author: getCurrentUser(), item: item4, dealing: false, closed: false, expired: false))
+        PFCloud.callFunctionInBackground("getUserRequests", withParameters: ["page": page ?? NSNull(), "limit": limit ?? NSNull()])
+        {
+            (pfResults: AnyObject!, pfError: NSError!) -> Void in
+            if pfError == nil
+            {
+                for pfResult in pfResults as [AnyObject]
+                {
+                    // Get PFObject's
+                    let pfRequest   = pfResult as PFObject
+                    let pfAuthor    = pfRequest["author"] as PFObject
+                    let pfItem      = pfRequest["item"] as PFObject
+                    
+                    // Instantiate author as User
+                    let author = User(
+                        id: pfAuthor.objectId,
+                        name: pfAuthor["name"] as String,
+                        picture: pfAuthor["photo"] as String,
+                        requestLimit: pfAuthor["requestLimit"] as Int
+                    )
+                    
+                    // Instantiate item as Item
+                    let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
+                    
+                    // Instantiate request as Request
+                    let request = Request(
+                        id: pfRequest.objectId,
+                        author: author,
+                        item: item,
+                        expiresAt: pfRequest["expiresAt"] as NSDate
+                    )
+                    
+                    // Verify if helper was set
+                    if let pfHelper = pfRequest["helper"] as? PFObject
+                    {
+                        // Instantiate helper as User
+                        let helper = User(
+                            id: pfHelper.objectId,
+                            name: pfHelper["name"] as String,
+                            picture: pfHelper["photo"] as String,
+                            requestLimit: pfHelper["requestLimit"] as Int
+                        )
+                        
+                        request.helper = helper
+                    }
+                    
+                    request.dealing = pfRequest["dealing"] as Bool
+                    request.closed  = pfRequest["closed"] as Bool
+                    request.expired = pfRequest["expired"] as Bool
+                    
+                    requests.append(request)
+                }
+            }
+            else
+            {
+                error = pfError
+            }
+        }
         
         return (requests, error)
     }
     
+    // Get dealing requests
     func getDealingRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError?)
     {
         var requests: [Request] = []
         var error: NSError?
         
-        var user1 = User(id: "01", name: "Fábio", picture: UIImage(named: "foto-Fabio"), requestLimit: 3)
-        var user2 = User(id: "01", name: "Lucas", picture: UIImage(named: "foto-Lucas"), requestLimit: 3)
-        var user3 = User(id: "01", name: "Pietro", picture: UIImage(named: "foto-Pietro"), requestLimit: 3)
-        var user4 = User(id: "01", name: "Giancarlo", picture: UIImage(named: "foto-Giancarlo"), requestLimit: 3)
-        
-        var item1 = Item(id: "01", name: "Livro de Design Patterns")
-        var item2 = Item(id: "01", name: "Esmalte")
-        var item3 = Item(id: "01", name: "Calculadora")
-        var item4 = Item(id: "01", name: "Remédio para dor de cabeça")
-        
-        requests.append(Request(id: "01", author: user1, item: item1, dealing: true, closed: false, expired: false))
-        requests.append(Request(id: "01", author: user2, item: item2, dealing: true, closed: false, expired: false))
-        requests.append(Request(id: "01", author: user3, item: item3, dealing: true, closed: false, expired: false))
-        requests.append(Request(id: "01", author: user4, item: item4, dealing: true, closed: false, expired: false))
+        PFCloud.callFunctionInBackground("getDealingRequests", withParameters: ["page": page ?? NSNull(), "limit": limit ?? NSNull()])
+        {
+            (pfResults: AnyObject!, pfError: NSError!) -> Void in
+            if pfError == nil
+            {
+                for pfResult in pfResults as [AnyObject]
+                {
+                    // Get PFObject's
+                    let pfRequest   = pfResult as PFObject
+                    let pfAuthor    = pfRequest["author"] as PFObject
+                    let pfHelper    = pfRequest["helper"] as PFObject
+                    let pfItem      = pfRequest["item"] as PFObject
+                    
+                    // Instantiate author as User
+                    let author = User(
+                        id: pfAuthor.objectId,
+                        name: pfAuthor["name"] as String,
+                        picture: pfAuthor["photo"] as String,
+                        requestLimit: pfAuthor["requestLimit"] as Int
+                    )
+                    
+                    // Instantiate helper as User
+                    let helper = User(
+                        id: pfHelper.objectId,
+                        name: pfHelper["name"] as String,
+                        picture: pfHelper["photo"] as String,
+                        requestLimit: pfHelper["requestLimit"] as Int
+                    )
+                    
+                    // Instantiate item as Item
+                    let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
+                    
+                    // Finally, instantiate request as Request
+                    let request = Request(
+                        id: pfRequest.objectId,
+                        author: author,
+                        item: item,
+                        expiresAt: pfRequest["expiresAt"] as NSDate
+                    )
+                    
+                    request.helper  = helper
+                    request.dealing = pfRequest["dealing"] as Bool
+                    request.closed  = pfRequest["closed"] as Bool
+                    request.expired = pfRequest["expired"] as Bool
+                    
+                    requests.append(request)
+                }
+            }
+            else
+            {
+                error = pfError
+            }
+        }
         
         return (requests, error)
     }
     
-    func respondRequest(request: Request!, hasItem: Bool!) -> (request: Request?, error: NSError?)
+    // Respond request
+    func respondRequest(request: Request!, hasItem: Bool!) -> (request: Request, error: NSError?)
     {
-        request.dealing = false
         var error: NSError?
+        
+        PFCloud.callFunctionInBackground("respondRequest", withParameters: ["requestId": request.id, "hasItem": hasItem])
+        {
+            (pfResult: AnyObject!, pfError: NSError?) -> Void in
+            if pfError == nil
+            {
+                // Get PFObject's
+                let pfRequest = pfResult as PFObject
+                
+                // Verify if helper was set
+                if let pfHelper = pfRequest["helper"] as? PFObject
+                {
+                    // Instantiate helper as User
+                    let helper = User(
+                        id: pfHelper.objectId,
+                        name: pfHelper["name"] as String,
+                        picture: pfHelper["photo"] as String,
+                        requestLimit: pfHelper["requestLimit"] as Int
+                    )
+                    
+                    request.helper = helper
+                }
+                
+                request.dealing = true
+            }
+            else
+            {
+                error = pfError
+            }
+        }
         
         return (request, error)
     }
     
-    func closeRequest(request: Request!, successful: Bool!) -> (request: Request?, error: NSError?)
+    // Close request
+    func closeRequest(request: Request!, successful: Bool!) -> (request: Request, error: NSError?)
     {
-        request.closed = true
         var error: NSError?
+        
+        PFCloud.callFunctionInBackground("closeRequest", withParameters: ["requestId": request.id, "successful": successful])
+        {
+            (pfResult: AnyObject!, pfError: NSError?) -> Void in
+            if pfError == nil
+            {
+                // Get PFObject's
+                let pfRequest = pfResult as PFObject
+                
+                // Verify if helper was set
+                if let pfHelper = pfRequest["helper"] as? PFObject
+                {
+                    // Instantiate helper as User
+                    let helper = User(
+                        id: pfHelper.objectId,
+                        name: pfHelper["name"] as String,
+                        picture: pfHelper["photo"] as String,
+                        requestLimit: pfHelper["requestLimit"] as Int
+                    )
+                    
+                    request.helper = helper
+                }
+                
+                request.dealing = false
+                request.closed = true
+            }
+            else
+            {
+                error = pfError
+            }
+        }
         
         return (request, error)
     }
     
-    func cancelDeal(request: Request!) -> (request: Request?, error: NSError?)
+    // Cancel deal
+    func cancelDeal(request: Request!) -> (request: Request, error: NSError?)
     {
-        request.dealing = false
         var error: NSError?
+        
+        PFCloud.callFunctionInBackground("cancelDeal", withParameters: ["requestId": request.id])
+        {
+            (pfResult: AnyObject!, pfError: NSError?) -> Void in
+            if pfError == nil
+            {
+                // Get PFObject's
+                let pfRequest = pfResult as PFObject
+                
+                // Verify if helper was set
+                if let pfHelper = pfRequest["helper"] as? PFObject
+                {
+                    // Instantiate helper as User
+                    let helper = User(
+                        id: pfHelper.objectId,
+                        name: pfHelper["name"] as String,
+                        picture: pfHelper["photo"] as String,
+                        requestLimit: pfHelper["requestLimit"] as Int
+                    )
+                    
+                    request.helper = helper
+                }
+                
+                request.dealing = true
+            }
+            else
+            {
+                error = pfError
+            }
+        }
         
         return (request, error)
     }
     
+    // Send message
     func sendMessage(request: Request!, messageContent: String!) -> (message: Message?, error: NSError?)
     {
-        let message: Message = Message(id: "01", request: request, from: getCurrentUser(), content: messageContent)
+        var message: Message?
         var error: NSError?
+        
+        PFCloud.callFunctionInBackground("sendMessage", withParameters: ["requestId": request.id, "content": messageContent])
+        {
+            (pfResult: AnyObject!, pfError: NSError?) -> Void in
+            if pfError == nil
+            {
+                let pfMessage   = pfResult as PFObject
+                let pfFrom      = pfMessage["from"] as PFObject
+                let pfRequest   = pfMessage["request"] as PFObject
+                let pfAuthor    = pfRequest["author"] as PFObject
+                let pfHelper    = pfRequest["helper"] as PFObject
+                let pfItem      = pfRequest["item"] as PFObject
+                
+                // Instantiate author as User
+                let author = User(
+                    id: pfAuthor.objectId,
+                    name: pfAuthor["name"] as String,
+                    picture: pfAuthor["photo"] as String,
+                    requestLimit: pfAuthor["requestLimit"] as Int
+                )
+                
+                // Instantiate helper as User
+                let helper = User(
+                    id: pfHelper.objectId,
+                    name: pfHelper["name"] as String,
+                    picture: pfHelper["photo"] as String,
+                    requestLimit: pfHelper["requestLimit"] as Int
+                )
+                
+                // Instantiate item as Item
+                let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
+                
+                // Finally, instantiate request as Request
+                let request = Request(
+                    id: pfRequest.objectId,
+                    author: author,
+                    item: item,
+                    expiresAt: pfRequest["expiresAt"] as NSDate
+                )
+                
+                request.helper  = helper
+                request.dealing = pfRequest["dealing"] as Bool
+                request.closed  = pfRequest["closed"] as Bool
+                request.expired = pfRequest["expired"] as Bool
+                
+                // Instantiate from as User
+                let from = User(
+                    id: pfFrom.objectId,
+                    name: pfFrom["name"] as String,
+                    picture: pfFrom["photo"] as String,
+                    requestLimit: pfFrom["requestLimit"] as Int
+                )
+                
+                // Instantiate message as Message
+                message = Message(
+                    id: pfMessage.objectId,
+                    request: request,
+                    from: from,
+                    content: pfMessage["content"] as String,
+                    createdAt: pfMessage.createdAt
+                )
+            }
+            else
+            {
+                error = pfError
+            }
+        }
         
         return (message, error)
     }
     
+    // Get messages
     func getMessages(request: Request!, page: Int?, limit: Int?) -> (messages: [Message], error: NSError?)
     {
         var messages: [Message] = []
         var error: NSError?
         
-        messages.append(Message(id: "01", request: request, from: getCurrentUser(), content: "Olá"))
-        messages.append(Message(id: "01", request: request, from: getCurrentUser(), content: "Oi?"))
-        messages.append(Message(id: "01", request: request, from: getCurrentUser(), content: "Você tá aí"))
-        messages.append(Message(id: "01", request: request, from: getCurrentUser(), content: "Oieeee"))
+        PFCloud.callFunctionInBackground("getMessages", withParameters: ["requestId": request.id, "page": page ?? NSNull(), "limit": limit ?? NSNull()])
+        {
+            (pfResults: AnyObject!, pfError: NSError?) -> Void in
+            if pfError == nil
+            {
+                for pfResult in pfResults as [AnyObject]
+                {
+                    let pfMessage   = pfResult as PFObject
+                    let pfFrom      = pfMessage["from"] as PFObject
+                    let pfRequest   = pfMessage["request"] as PFObject
+                    let pfAuthor    = pfRequest["author"] as PFObject
+                    let pfHelper    = pfRequest["helper"] as PFObject
+                    let pfItem      = pfRequest["item"] as PFObject
+                    
+                    // Instantiate author as User
+                    let author = User(
+                        id: pfAuthor.objectId,
+                        name: pfAuthor["name"] as String,
+                        picture: pfAuthor["photo"] as String,
+                        requestLimit: pfAuthor["requestLimit"] as Int
+                    )
+                    
+                    // Instantiate helper as User
+                    let helper = User(
+                        id: pfHelper.objectId,
+                        name: pfHelper["name"] as String,
+                        picture: pfHelper["photo"] as String,
+                        requestLimit: pfHelper["requestLimit"] as Int
+                    )
+                    
+                    // Instantiate item as Item
+                    let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
+                    
+                    // Finally, instantiate request as Request
+                    let request = Request(
+                        id: pfRequest.objectId,
+                        author: author,
+                        item: item,
+                        expiresAt: pfRequest["expiresAt"] as NSDate
+                    )
+                    
+                    request.helper  = helper
+                    request.dealing = pfRequest["dealing"] as Bool
+                    request.closed  = pfRequest["closed"] as Bool
+                    request.expired = pfRequest["expired"] as Bool
+                    
+                    // Instantiate from as User
+                    let from = User(
+                        id: pfFrom.objectId,
+                        name: pfFrom["name"] as String,
+                        picture: pfFrom["photo"] as String,
+                        requestLimit: pfFrom["requestLimit"] as Int
+                    )
+                    
+                    // Instantiate message as Message
+                    let message = Message(
+                        id: pfMessage.objectId,
+                        request: request,
+                        from: from,
+                        content: pfMessage["content"] as String,
+                        createdAt: pfMessage.createdAt
+                    )
+                    
+                    messages.append(message)
+                }
+            }
+            else
+            {
+                error = pfError
+            }
+        }
         
         return (messages, error)
     }
     
+    // Get items
     func getItems(string: String!, limit: Int?) -> (items: [Item], error: NSError?)
     {
         var items: [Item] = []
         var error: NSError?
+        
+        PFCloud.callFunctionInBackground("getItems", withParameters: ["string": string, "limit": limit ?? NSNull()])
+        {
+            (pfResults: AnyObject!, pfError: NSError?) -> Void in
+            if pfError == nil
+            {
+                for pfResult in pfResults as [AnyObject]
+                {
+                    let pfItem = pfResult as PFObject
+                    let item = Item(id: pfItem.objectId, name: pfResult["name"] as String)
+                    
+                    items.append(item)
+                }
+            }
+            else
+            {
+                error = pfError
+            }
+        }
         
         return (items, error)
     }
