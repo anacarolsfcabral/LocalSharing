@@ -11,275 +11,212 @@ import UIKit
 class ParseDAO: DAO
 {    
     // Login
-    func login() -> (user: User?, error: NSError?)
+    func login(then callback: (User?, NSError?) -> Void)
     {
         var user: User?
-        var error: NSError?
         
         PFFacebookUtils.logInWithPermissions(["public_profile"],
         {
-            (pfUser: PFUser!, pfError: NSError!) -> Void in
+            (pfUser, error) in
             if (pfUser != nil)
             {
                 user = self.getUser(pfUser)
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(user, error)
         })
-        
-        return (user, error)
     }
     
     // Get current user
     func getCurrentUser() -> User
     {
-        var pfUser = PFUser.currentUser()
-        
-        return getUser(pfUser)!
+        return getUser(PFUser.currentUser())!
     }
     
     // Create request
-    func createRequest(item: String!) -> (request: Request?, error: NSError?)
+    func createRequest(item: String!, then callback: (Request?, NSError?) -> Void)
     {
         var request: Request?
-        var error: NSError?
         
         PFCloud.callFunctionInBackground("createRequest", withParameters: ["item": item])
         {
-            (pfResult: AnyObject!, pfError: NSError?) -> Void in
-            if pfError == nil
+            (pfResult, error) in
+            if error == nil
             {
                 request = self.getRequest(pfResult as PFObject)
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(request, error)
         }
-        
-        return (request, error)
     }
     
     // Get requests
-    func getRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError?)
+    func getRequests(page: Int?, limit: Int?, then callback: ([Request], NSError?) -> Void)
     {
         var requests: [Request] = []
-        var error: NSError?
         
         PFCloud.callFunctionInBackground("getRequests", withParameters: ["page": page ?? NSNull(), "limit": limit ?? NSNull()])
         {
-            (pfResults: AnyObject!, pfError: NSError!) -> Void in
-            if pfError == nil
+            (pfResults, error) in
+            if error == nil
             {
                 for pfResult in pfResults as [AnyObject]
                 {
                     requests.append(self.getRequest(pfResult as PFObject))
                 }
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(requests, error)
         }
-        
-        return (requests, error)
     }
     
     // Get user requests
-    func getUserRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError?)
+    func getUserRequests(page: Int?, limit: Int?, then callback: ([Request], NSError?) -> Void)
     {
         var requests: [Request] = []
-        var error: NSError?
         
         PFCloud.callFunctionInBackground("getUserRequests", withParameters: ["page": page ?? NSNull(), "limit": limit ?? NSNull()])
         {
-            (pfResults: AnyObject!, pfError: NSError!) -> Void in
-            if pfError == nil
+            (pfResults, error) in
+            if error == nil
             {
                 for pfResult in pfResults as [AnyObject]
                 {
                     requests.append(self.getRequest(pfResult as PFObject))
                 }
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(requests, error)
         }
-        
-        return (requests, error)
     }
     
     // Get dealing requests
-    func getDealingRequests(page: Int?, limit: Int?) -> (requests: [Request], error: NSError?)
+    func getDealingRequests(page: Int?, limit: Int?, then callback: ([Request], NSError?) -> Void)
     {
         var requests: [Request] = []
-        var error: NSError?
         
         PFCloud.callFunctionInBackground("getDealingRequests", withParameters: ["page": page ?? NSNull(), "limit": limit ?? NSNull()])
         {
-            (pfResults: AnyObject!, pfError: NSError!) -> Void in
-            if pfError == nil
+            (pfResults, error) in
+            if error == nil
             {
                 for pfResult in pfResults as [AnyObject]
                 {
                     requests.append(self.getRequest(pfResult as PFObject))
                 }
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(requests, error)
         }
-        
-        return (requests, error)
     }
     
     // Respond request
-    func respondRequest(request: Request!, hasItem: Bool!) -> (request: Request, error: NSError?)
+    func respondRequest(request: Request!, hasItem: Bool!, then callback: (Request, NSError?) -> Void)
     {
-        var error: NSError?
-        
         PFCloud.callFunctionInBackground("respondRequest", withParameters: ["requestId": request.id, "hasItem": hasItem])
         {
-            (pfResult: AnyObject!, pfError: NSError?) -> Void in
-            if pfError == nil
+            (pfResult, error) in
+            if error == nil
             {
-                // Get PFObject's
                 let pfRequest   = pfResult as PFObject
                 request.helper  = self.getUser(pfRequest["helper"] as? PFUser)
                 request.dealing = true
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(request, error)
         }
-        
-        return (request, error)
     }
     
     // Close request
-    func closeRequest(request: Request!, successful: Bool!) -> (request: Request, error: NSError?)
+    func closeRequest(request: Request!, successful: Bool!, then callback: (Request, NSError?) -> Void)
     {
-        var error: NSError?
-        
         PFCloud.callFunctionInBackground("closeRequest", withParameters: ["requestId": request.id, "successful": successful])
         {
-            (pfResult: AnyObject!, pfError: NSError?) -> Void in
-            if pfError == nil
+            (pfResult, error) in
+            if error == nil
             {
-                // Get PFObject's
                 let pfRequest   = pfResult as PFObject
                 request.helper  = self.getUser(pfRequest["helper"] as? PFUser)
                 request.dealing = false
                 request.closed  = true
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(request, error)
         }
-        
-        return (request, error)
     }
     
     // Cancel deal
-    func cancelDeal(request: Request!) -> (request: Request, error: NSError?)
+    func cancelDeal(request: Request!, then callback: (Request, NSError?) -> Void)
     {
-        var error: NSError?
-        
         PFCloud.callFunctionInBackground("cancelDeal", withParameters: ["requestId": request.id])
         {
-            (pfResult: AnyObject!, pfError: NSError?) -> Void in
-            if pfError == nil
+            (pfResult, error) in
+            if error == nil
             {
-                // Get PFObject's
                 let pfRequest   = pfResult as PFObject
                 request.helper  = nil
                 request.dealing = false
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(request, error)
         }
-        
-        return (request, error)
     }
     
     // Send message
-    func sendMessage(request: Request!, messageContent: String!) -> (message: Message?, error: NSError?)
+    func sendMessage(request: Request!, content: String!, then callback: (Message?, NSError?) -> Void)
     {
         var message: Message?
-        var error: NSError?
         
-        PFCloud.callFunctionInBackground("sendMessage", withParameters: ["requestId": request.id, "content": messageContent])
+        PFCloud.callFunctionInBackground("sendMessage", withParameters: ["requestId": request.id, "content": content])
         {
-            (pfResult: AnyObject!, pfError: NSError?) -> Void in
-            if pfError == nil
+            (pfResult, error) in
+            if error == nil
             {
                 message = self.getMessage(pfResult as PFObject)
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(message, error)
         }
-        
-        return (message, error)
     }
     
     // Get messages
-    func getMessages(request: Request!, page: Int?, limit: Int?) -> (messages: [Message], error: NSError?)
+    func getMessages(request: Request!, page: Int?, limit: Int?, then callback: ([Message], NSError?) -> Void)
     {
         var messages: [Message] = []
-        var error: NSError?
         
         PFCloud.callFunctionInBackground("getMessages", withParameters: ["requestId": request.id, "page": page ?? NSNull(), "limit": limit ?? NSNull()])
         {
-            (pfResults: AnyObject!, pfError: NSError?) -> Void in
-            if pfError == nil
+            (pfResults, error) in
+            if error == nil
             {
                 for pfResult in pfResults as [AnyObject]
                 {
                     messages.append(self.getMessage(pfResult as PFObject))
                 }
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(messages, error)
         }
-        
-        return (messages, error)
     }
     
     // Get items
-    func getItems(string: String!, limit: Int?) -> (items: [Item], error: NSError?)
+    func getItems(string: String!, limit: Int?, then callback: ([Item], NSError?) -> Void)
     {
         var items: [Item] = []
-        var error: NSError?
         
         PFCloud.callFunctionInBackground("getItems", withParameters: ["string": string, "limit": limit ?? NSNull()])
         {
-            (pfResults: AnyObject!, pfError: NSError?) -> Void in
-            if pfError == nil
+            (pfResults, error) in
+            if error == nil
             {
                 for pfResult in pfResults as [AnyObject]
                 {
                     items.append(self.getItem(pfResult as PFObject))
                 }
             }
-            else
-            {
-                error = pfError
-            }
+            
+            callback(items, error)
         }
-        
-        return (items, error)
     }
     
     private func getUser(pfUser: PFUser?) -> User?
