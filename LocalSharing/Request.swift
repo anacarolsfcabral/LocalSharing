@@ -19,11 +19,15 @@ class Request {
     var expired: Bool! = false
     var expiresAt: NSDate!
 
-    init(id: String!, author: User!, item: Item!, expiresAt: NSDate!)
+    init(id: String!, author: User!, helper: User?, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!, expiresAt: NSDate!)
     {
         self.id = id
         self.author = author
+        self.helper = helper
         self.item = item
+        self.dealing = dealing
+        self.closed = closed
+        self.expired = expired
         self.expiresAt = expiresAt
     }
 }

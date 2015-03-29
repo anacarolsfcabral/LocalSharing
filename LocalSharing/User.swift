@@ -15,14 +15,11 @@ class User
     var picture: UIImage!
     var requestLimit: Int!
     
-    init (id: String!, name: String!, picture: String!, requestLimit: Int!)
+    init (id: String!, name: String!, picture: UIImage!, requestLimit: Int!)
     {
         self.id = id
         self.name = name
         self.requestLimit = requestLimit
-        
-        let picUrl = NSURL(string: picture)
-        let picData = NSData(contentsOfURL: picUrl!)
-        self.picture = UIImage(data: picData!)
+        self.picture = picture
     }
 }

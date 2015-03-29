@@ -21,13 +21,7 @@ class ParseDAO: DAO
             (pfUser: PFUser!, pfError: NSError!) -> Void in
             if (pfUser != nil)
             {
-                // Instantiate user as User
-                user = User(
-                    id: pfUser.objectId,
-                    name: pfUser["name"] as String,
-                    picture: pfUser["photo"] as String,
-                    requestLimit: pfUser["requestLimit"] as Int
-                )
+                user = self.getUser(pfUser)
             }
             else
             {
@@ -41,18 +35,9 @@ class ParseDAO: DAO
     // Get current user
     func getCurrentUser() -> User
     {
-        var user: User
         var pfUser = PFUser.currentUser()
         
-        // Instantiate user as User
-        user = User(
-            id: pfUser.objectId,
-            name: pfUser["name"] as String,
-            picture: pfUser["photo"] as String,
-            requestLimit: pfUser["requestLimit"] as Int
-        )
-        
-        return user
+        return getUser(pfUser)!
     }
     
     // Create request
@@ -66,29 +51,7 @@ class ParseDAO: DAO
             (pfResult: AnyObject!, pfError: NSError?) -> Void in
             if pfError == nil
             {
-                // Get PFObject's
-                let pfRequest   = pfResult as PFObject
-                let pfAuthor    = pfRequest["author"] as PFObject
-                let pfItem      = pfRequest["item"] as PFObject
-                
-                // Instantiate author as User
-                let author = User(
-                    id: pfAuthor.objectId,
-                    name: pfAuthor["name"] as String,
-                    picture: pfAuthor["photo"] as String,
-                    requestLimit: pfAuthor["requestLimit"] as Int
-                )
-                
-                // Instantiate item as Item
-                let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
-                
-                // Finally, instantiate request as Request
-                request = Request(
-                    id: pfRequest.objectId,
-                    author: author,
-                    item: item,
-                    expiresAt: pfRequest["expiresAt"] as NSDate
-                )
+                request = self.getRequest(pfResult as PFObject)
             }
             else
             {
@@ -112,31 +75,7 @@ class ParseDAO: DAO
             {
                 for pfResult in pfResults as [AnyObject]
                 {
-                    // Get PFObject's
-                    let pfRequest   = pfResult as PFObject
-                    let pfAuthor    = pfRequest["author"] as PFObject
-                    let pfItem      = pfRequest["item"] as PFObject
-                    
-                    // Instantiate author as User
-                    let author = User(
-                        id: pfAuthor.objectId,
-                        name: pfAuthor["name"] as String,
-                        picture: pfAuthor["photo"] as String,
-                        requestLimit: pfAuthor["requestLimit"] as Int
-                    )
-                    
-                    // Instantiate item as Item
-                    let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
-                    
-                    // Finally, instantiate request as Request
-                    let request = Request(
-                        id: pfRequest.objectId,
-                        author: author,
-                        item: item,
-                        expiresAt: pfRequest["expiresAt"] as NSDate
-                    )
-                    
-                    requests.append(request)
+                    requests.append(self.getRequest(pfResult as PFObject))
                 }
             }
             else
@@ -161,49 +100,7 @@ class ParseDAO: DAO
             {
                 for pfResult in pfResults as [AnyObject]
                 {
-                    // Get PFObject's
-                    let pfRequest   = pfResult as PFObject
-                    let pfAuthor    = pfRequest["author"] as PFObject
-                    let pfItem      = pfRequest["item"] as PFObject
-                    
-                    // Instantiate author as User
-                    let author = User(
-                        id: pfAuthor.objectId,
-                        name: pfAuthor["name"] as String,
-                        picture: pfAuthor["photo"] as String,
-                        requestLimit: pfAuthor["requestLimit"] as Int
-                    )
-                    
-                    // Instantiate item as Item
-                    let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
-                    
-                    // Instantiate request as Request
-                    let request = Request(
-                        id: pfRequest.objectId,
-                        author: author,
-                        item: item,
-                        expiresAt: pfRequest["expiresAt"] as NSDate
-                    )
-                    
-                    // Verify if helper was set
-                    if let pfHelper = pfRequest["helper"] as? PFObject
-                    {
-                        // Instantiate helper as User
-                        let helper = User(
-                            id: pfHelper.objectId,
-                            name: pfHelper["name"] as String,
-                            picture: pfHelper["photo"] as String,
-                            requestLimit: pfHelper["requestLimit"] as Int
-                        )
-                        
-                        request.helper = helper
-                    }
-                    
-                    request.dealing = pfRequest["dealing"] as Bool
-                    request.closed  = pfRequest["closed"] as Bool
-                    request.expired = pfRequest["expired"] as Bool
-                    
-                    requests.append(request)
+                    requests.append(self.getRequest(pfResult as PFObject))
                 }
             }
             else
@@ -228,45 +125,7 @@ class ParseDAO: DAO
             {
                 for pfResult in pfResults as [AnyObject]
                 {
-                    // Get PFObject's
-                    let pfRequest   = pfResult as PFObject
-                    let pfAuthor    = pfRequest["author"] as PFObject
-                    let pfHelper    = pfRequest["helper"] as PFObject
-                    let pfItem      = pfRequest["item"] as PFObject
-                    
-                    // Instantiate author as User
-                    let author = User(
-                        id: pfAuthor.objectId,
-                        name: pfAuthor["name"] as String,
-                        picture: pfAuthor["photo"] as String,
-                        requestLimit: pfAuthor["requestLimit"] as Int
-                    )
-                    
-                    // Instantiate helper as User
-                    let helper = User(
-                        id: pfHelper.objectId,
-                        name: pfHelper["name"] as String,
-                        picture: pfHelper["photo"] as String,
-                        requestLimit: pfHelper["requestLimit"] as Int
-                    )
-                    
-                    // Instantiate item as Item
-                    let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
-                    
-                    // Finally, instantiate request as Request
-                    let request = Request(
-                        id: pfRequest.objectId,
-                        author: author,
-                        item: item,
-                        expiresAt: pfRequest["expiresAt"] as NSDate
-                    )
-                    
-                    request.helper  = helper
-                    request.dealing = pfRequest["dealing"] as Bool
-                    request.closed  = pfRequest["closed"] as Bool
-                    request.expired = pfRequest["expired"] as Bool
-                    
-                    requests.append(request)
+                    requests.append(self.getRequest(pfResult as PFObject))
                 }
             }
             else
@@ -289,22 +148,8 @@ class ParseDAO: DAO
             if pfError == nil
             {
                 // Get PFObject's
-                let pfRequest = pfResult as PFObject
-                
-                // Verify if helper was set
-                if let pfHelper = pfRequest["helper"] as? PFObject
-                {
-                    // Instantiate helper as User
-                    let helper = User(
-                        id: pfHelper.objectId,
-                        name: pfHelper["name"] as String,
-                        picture: pfHelper["photo"] as String,
-                        requestLimit: pfHelper["requestLimit"] as Int
-                    )
-                    
-                    request.helper = helper
-                }
-                
+                let pfRequest   = pfResult as PFObject
+                request.helper  = self.getUser(pfRequest["helper"] as? PFUser)
                 request.dealing = true
             }
             else
@@ -327,24 +172,10 @@ class ParseDAO: DAO
             if pfError == nil
             {
                 // Get PFObject's
-                let pfRequest = pfResult as PFObject
-                
-                // Verify if helper was set
-                if let pfHelper = pfRequest["helper"] as? PFObject
-                {
-                    // Instantiate helper as User
-                    let helper = User(
-                        id: pfHelper.objectId,
-                        name: pfHelper["name"] as String,
-                        picture: pfHelper["photo"] as String,
-                        requestLimit: pfHelper["requestLimit"] as Int
-                    )
-                    
-                    request.helper = helper
-                }
-                
+                let pfRequest   = pfResult as PFObject
+                request.helper  = self.getUser(pfRequest["helper"] as? PFUser)
                 request.dealing = false
-                request.closed = true
+                request.closed  = true
             }
             else
             {
@@ -366,23 +197,9 @@ class ParseDAO: DAO
             if pfError == nil
             {
                 // Get PFObject's
-                let pfRequest = pfResult as PFObject
-                
-                // Verify if helper was set
-                if let pfHelper = pfRequest["helper"] as? PFObject
-                {
-                    // Instantiate helper as User
-                    let helper = User(
-                        id: pfHelper.objectId,
-                        name: pfHelper["name"] as String,
-                        picture: pfHelper["photo"] as String,
-                        requestLimit: pfHelper["requestLimit"] as Int
-                    )
-                    
-                    request.helper = helper
-                }
-                
-                request.dealing = true
+                let pfRequest   = pfResult as PFObject
+                request.helper  = nil
+                request.dealing = false
             }
             else
             {
@@ -404,61 +221,7 @@ class ParseDAO: DAO
             (pfResult: AnyObject!, pfError: NSError?) -> Void in
             if pfError == nil
             {
-                let pfMessage   = pfResult as PFObject
-                let pfFrom      = pfMessage["from"] as PFObject
-                let pfRequest   = pfMessage["request"] as PFObject
-                let pfAuthor    = pfRequest["author"] as PFObject
-                let pfHelper    = pfRequest["helper"] as PFObject
-                let pfItem      = pfRequest["item"] as PFObject
-                
-                // Instantiate author as User
-                let author = User(
-                    id: pfAuthor.objectId,
-                    name: pfAuthor["name"] as String,
-                    picture: pfAuthor["photo"] as String,
-                    requestLimit: pfAuthor["requestLimit"] as Int
-                )
-                
-                // Instantiate helper as User
-                let helper = User(
-                    id: pfHelper.objectId,
-                    name: pfHelper["name"] as String,
-                    picture: pfHelper["photo"] as String,
-                    requestLimit: pfHelper["requestLimit"] as Int
-                )
-                
-                // Instantiate item as Item
-                let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
-                
-                // Finally, instantiate request as Request
-                let request = Request(
-                    id: pfRequest.objectId,
-                    author: author,
-                    item: item,
-                    expiresAt: pfRequest["expiresAt"] as NSDate
-                )
-                
-                request.helper  = helper
-                request.dealing = pfRequest["dealing"] as Bool
-                request.closed  = pfRequest["closed"] as Bool
-                request.expired = pfRequest["expired"] as Bool
-                
-                // Instantiate from as User
-                let from = User(
-                    id: pfFrom.objectId,
-                    name: pfFrom["name"] as String,
-                    picture: pfFrom["photo"] as String,
-                    requestLimit: pfFrom["requestLimit"] as Int
-                )
-                
-                // Instantiate message as Message
-                message = Message(
-                    id: pfMessage.objectId,
-                    request: request,
-                    from: from,
-                    content: pfMessage["content"] as String,
-                    createdAt: pfMessage.createdAt
-                )
+                message = self.getMessage(pfResult as PFObject)
             }
             else
             {
@@ -482,63 +245,7 @@ class ParseDAO: DAO
             {
                 for pfResult in pfResults as [AnyObject]
                 {
-                    let pfMessage   = pfResult as PFObject
-                    let pfFrom      = pfMessage["from"] as PFObject
-                    let pfRequest   = pfMessage["request"] as PFObject
-                    let pfAuthor    = pfRequest["author"] as PFObject
-                    let pfHelper    = pfRequest["helper"] as PFObject
-                    let pfItem      = pfRequest["item"] as PFObject
-                    
-                    // Instantiate author as User
-                    let author = User(
-                        id: pfAuthor.objectId,
-                        name: pfAuthor["name"] as String,
-                        picture: pfAuthor["photo"] as String,
-                        requestLimit: pfAuthor["requestLimit"] as Int
-                    )
-                    
-                    // Instantiate helper as User
-                    let helper = User(
-                        id: pfHelper.objectId,
-                        name: pfHelper["name"] as String,
-                        picture: pfHelper["photo"] as String,
-                        requestLimit: pfHelper["requestLimit"] as Int
-                    )
-                    
-                    // Instantiate item as Item
-                    let item = Item(id: pfItem.objectId, name: pfItem["name"] as String)
-                    
-                    // Finally, instantiate request as Request
-                    let request = Request(
-                        id: pfRequest.objectId,
-                        author: author,
-                        item: item,
-                        expiresAt: pfRequest["expiresAt"] as NSDate
-                    )
-                    
-                    request.helper  = helper
-                    request.dealing = pfRequest["dealing"] as Bool
-                    request.closed  = pfRequest["closed"] as Bool
-                    request.expired = pfRequest["expired"] as Bool
-                    
-                    // Instantiate from as User
-                    let from = User(
-                        id: pfFrom.objectId,
-                        name: pfFrom["name"] as String,
-                        picture: pfFrom["photo"] as String,
-                        requestLimit: pfFrom["requestLimit"] as Int
-                    )
-                    
-                    // Instantiate message as Message
-                    let message = Message(
-                        id: pfMessage.objectId,
-                        request: request,
-                        from: from,
-                        content: pfMessage["content"] as String,
-                        createdAt: pfMessage.createdAt
-                    )
-                    
-                    messages.append(message)
+                    messages.append(self.getMessage(pfResult as PFObject))
                 }
             }
             else
@@ -563,10 +270,7 @@ class ParseDAO: DAO
             {
                 for pfResult in pfResults as [AnyObject]
                 {
-                    let pfItem = pfResult as PFObject
-                    let item = Item(id: pfItem.objectId, name: pfResult["name"] as String)
-                    
-                    items.append(item)
+                    items.append(self.getItem(pfResult as PFObject))
                 }
             }
             else
@@ -576,6 +280,55 @@ class ParseDAO: DAO
         }
         
         return (items, error)
+    }
+    
+    private func getUser(pfUser: PFUser?) -> User?
+    {
+        if let user = pfUser
+        {
+            return User(
+                id: user.objectId,
+                name: user["name"] as String,
+                picture: UIImage(data: NSData(contentsOfURL: NSURL(string: user["photo"] as String)!)!),
+                requestLimit: user["requestLimit"] as Int
+            )
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    private func getRequest(pfRequest: PFObject) -> Request
+    {
+        let request = Request(
+            id: pfRequest.objectId,
+            author: getUser(pfRequest["author"] as? PFUser),
+            helper: getUser(pfRequest["helper"] as? PFUser),
+            item: getItem(pfRequest["item"] as PFObject),
+            dealing: pfRequest["dealing"] as Bool,
+            closed: pfRequest["closed"] as Bool,
+            expired: pfRequest["expired"] as Bool,
+            expiresAt: pfRequest["expiresAt"] as NSDate
+        )
+        
+        return request
+    }
+    
+    private func getItem(pfItem: PFObject) -> Item
+    {
+        return Item(id: pfItem.objectId, name: pfItem["name"] as String)
+    }
+    
+    private func getMessage(pfMessage: PFObject) -> Message
+    {
+        return Message(
+            id: pfMessage.objectId,
+            request: getRequest(pfMessage["request"] as PFObject),
+            from: getUser(pfMessage["from"] as? PFUser),
+            content: pfMessage["content"] as String,
+            createdAt: pfMessage.createdAt
+        )
     }
 
 }

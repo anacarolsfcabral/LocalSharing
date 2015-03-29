@@ -219,8 +219,8 @@
 		FB1A38771AC16F7B00512311 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F0AE968D1AB8A99B005F36D8 /* Request.swift */,
 				FB1A38781AC173AA00512311 /* User.swift */,
+				F0AE968D1AB8A99B005F36D8 /* Request.swift */,
 				FB1A387A1AC1744500512311 /* Item.swift */,
 				FB1A387C1AC1758A00512311 /* Message.swift */,
 			);
