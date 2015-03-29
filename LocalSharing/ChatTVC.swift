@@ -11,13 +11,21 @@ import UIKit
 class ChatTVC: UITableViewController
 {
     var dealingsList: [Request] = []
-    var dao: DAO = ParseDAO()
+    var dao: DAO = DAOFactory.getDAO()
+    var page: Int = 1
+    var limit: Int = 30
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        dealingsList = dao.getDealingRequests(0, limit: 0)
+        dao.getDealingRequests(page, limit: limit, then: {
+            (requests, error) in
+            if error == nil {
+                self.dealingsList += requests
+                self.tableView.reloadData()
+            }
+        })
         
     }
     
@@ -32,13 +40,13 @@ class ChatTVC: UITableViewController
     {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return dealingsList.count
      }
 }

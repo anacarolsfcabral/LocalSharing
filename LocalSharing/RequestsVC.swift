@@ -11,13 +11,21 @@ import UIKit
 class RequestsVC: UITableViewController
 {
     var requestsList: [Request] = []
-    var dao: DAO = ParseDAO()
+    var dao: DAO = DAOFactory.getDAO()
+    var page: Int = 1
+    var limit: Int = 30
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        requestsList = dao.getRequests(0, limit: 0)
+        dao.getRequests(page, limit: limit, then: {
+            (requests, error) in
+            if error == nil {
+                self.requestsList += requests
+                self.tableView.reloadData()
+            }
+        })
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
     }

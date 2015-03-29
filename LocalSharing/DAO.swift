@@ -19,7 +19,7 @@ protocol DAO {
     
     func login              (then callback: (User?, NSError?) -> Void)
     
-    func getCurrentUser     () -> User
+    func getCurrentUser     () -> User?
     
     func createRequest      (item: String!, then callback: (Request?, NSError?) -> Void)
     

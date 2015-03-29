@@ -10,12 +10,20 @@ import UIKit
 
 class LoginVC: UIViewController
 {
-    var dao: DAO = ParseDAO()
-    var user: User?
+    var dao: DAO = DAOFactory.getDAO()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        if dao.getCurrentUser() != nil {
+            dao.login(then: {
+                (user, error) in
+                if error == nil {
+                    self.performSegueWithIdentifier("goToRequests", sender: UIButton())
+                }
+            })
+        }
     }
 
     override func didReceiveMemoryWarning()
@@ -25,9 +33,12 @@ class LoginVC: UIViewController
     
     @IBAction func loginButton(sender: UIButton)
     {
-        
-        user = dao.login()
-        
+        dao.login(then: {
+            (user, error) in
+            if error == nil {
+                self.performSegueWithIdentifier("goToRequests", sender: sender)
+            }
+        })
     }
 
 }

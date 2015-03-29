@@ -28,9 +28,9 @@ class ParseDAO: DAO
     }
     
     // Get current user
-    func getCurrentUser() -> User
+    func getCurrentUser() -> User?
     {
-        return getUser(PFUser.currentUser())!
+        return getUser(PFUser.currentUser())
     }
     
     // Create request
