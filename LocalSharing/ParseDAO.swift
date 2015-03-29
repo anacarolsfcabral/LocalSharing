@@ -290,7 +290,7 @@ class ParseDAO: DAO
                 id: user.objectId,
                 name: user["name"] as String,
                 picture: UIImage(data: NSData(contentsOfURL: NSURL(string: user["photo"] as String)!)!),
-                requestLimit: user["requestLimit"] as Int
+                requestLimit: user["requestsLimit"] as Int
             )
         }
         else
