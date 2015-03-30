@@ -14,13 +14,14 @@ class Message
     var request: Request!
     var from: User!
     var content: String!
-    var createdAt: NSDate?
+    var createdAt: NSDate!
     
-    init (id: String!, request: Request!, from: User!, content: String!)
+    init (id: String!, request: Request!, from: User!, content: String!, createdAt: NSDate!)
     {
         self.id = id
         self.request = request
         self.from = from
         self.content = content
+        self.createdAt = createdAt
     }
 }

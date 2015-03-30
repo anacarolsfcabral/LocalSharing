@@ -19,7 +19,7 @@ class User
     {
         self.id = id
         self.name = name
-        self.picture = picture
         self.requestLimit = requestLimit
+        self.picture = picture
     }
 }
