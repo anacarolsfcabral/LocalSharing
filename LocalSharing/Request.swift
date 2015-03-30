@@ -8,32 +8,27 @@
 
 import UIKit
 
-class Request {
-    var id: String?
+class Request
+{
+    var id: String!
     var author: User!
     var helper: User?
     var item: Item!
-    var lastMessage: [Message]! = []
-    var dealing: Bool!
-    var closed: Bool!
-    var expired: Bool!
-    
-//    func getExpireDate() -> NSDate {
-//}
+    var messages: [Message]! = []
+    var dealing: Bool! = false
+    var closed: Bool! = false
+    var expired: Bool! = false
+    var expiresAt: NSDate!
 
-    init(author: User!, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!)
+    init(id: String!, author: User!, helper: User?, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!, expiresAt: NSDate!)
     {
+        self.id = id
         self.author = author
+        self.helper = helper
         self.item = item
         self.dealing = dealing
         self.closed = closed
         self.expired = expired
-    }
-        
-    convenience init(author: User!, helper: User?, item: Item!, lastMessage: [Message]?, dealing: Bool!, closed: Bool!, expired: Bool!)
-    {
-        self.init(author: author, item: item, dealing: dealing, closed: closed, expired: expired);
-        self.lastMessage = lastMessage
-        self.helper = helper
+        self.expiresAt = expiresAt
     }
 }

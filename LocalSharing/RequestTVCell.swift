@@ -77,17 +77,17 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     {
         
         self.textField.resignFirstResponder()
-        PFCloud.callFunctionInBackground("request", withParameters:["item" : textField.text])
-            {
-            (result: AnyObject!, error: NSError!) -> Void in
-            
-            if error == nil{
-                
-            }
-            else{
-                println(error)
-            }
-        }
+//        PFCloud.callFunctionInBackground("request", withParameters:["item" : textField.text])
+//            {
+//            (result: AnyObject!, error: NSError!) -> Void in
+//            
+//            if error == nil{
+//                
+//            }
+//            else{
+//                println(error)
+//            }
+//        }
         self.textField.userInteractionEnabled = false
         
         return true
