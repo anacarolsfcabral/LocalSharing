@@ -10,8 +10,6 @@ import UIKit
 
 class ProfileVC: UIViewController
 {
-    var dao: DAO = ParseDAO()
-    
     @IBOutlet weak var userPicture: UIImageView!
     @IBOutlet weak var userName: UILabel!
 
@@ -21,10 +19,10 @@ class ProfileVC: UIViewController
 
         // Do any additional setup after loading the view.
         
-        var user = dao.getCurrentUser()
-        self.userPicture.image = user.picture
+        var user = UserDAO.getCurrentUser()
+        self.userPicture.image = user?.picture
         
-        userName.text = user.name
+        userName.text = user?.name
 
     }
 

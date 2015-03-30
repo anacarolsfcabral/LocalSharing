@@ -10,8 +10,6 @@ import UIKit
 
 class LoginVC: UIViewController
 {
-    var dao: DAO = ParseDAO()
-    var user: User?
     
     override func viewDidLoad()
     {
@@ -25,9 +23,13 @@ class LoginVC: UIViewController
     
     @IBAction func loginButton(sender: UIButton)
     {
-        
-        user = dao.login()
+        UserDAO.login { (user, error) -> Void in
+            if error == nil
+            {
+                self.performSegueWithIdentifier("goToRequests", sender: sender)
+            }
+            
+        }
         
     }
-
 }

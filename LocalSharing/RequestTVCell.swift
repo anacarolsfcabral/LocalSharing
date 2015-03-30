@@ -28,7 +28,6 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
     }
     
     func textFieldDidBeginEditing(textField: UITextField)
@@ -75,19 +74,8 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        
         self.textField.resignFirstResponder()
-//        PFCloud.callFunctionInBackground("request", withParameters:["item" : textField.text])
-//            {
-//            (result: AnyObject!, error: NSError!) -> Void in
-//            
-//            if error == nil{
-//                
-//            }
-//            else{
-//                println(error)
-//            }
-//        }
+
         self.textField.userInteractionEnabled = false
         
         return true
