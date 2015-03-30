@@ -10,15 +10,15 @@ import UIKit
 
 class Request
 {
-    var id: String!
+    var id: String?
     var author: User!
     var helper: User?
-    var item: Item!
+    var item: Item?
     var messages: [Message]! = []
     var dealing: Bool! = false
     var closed: Bool! = false
     var expired: Bool! = false
-    var expiresAt: NSDate!
+    var expiresAt: NSDate?
 
     init(id: String!, author: User!, helper: User?, item: Item!, dealing: Bool!, closed: Bool!, expired: Bool!, expiresAt: NSDate!)
     {
@@ -30,5 +30,10 @@ class Request
         self.closed = closed
         self.expired = expired
         self.expiresAt = expiresAt
+    }
+    
+    init(author: User!)
+    {
+        self.author = author
     }
 }
