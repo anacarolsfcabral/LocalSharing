@@ -11,13 +11,18 @@ import UIKit
 class UserRequestsVC: UITableViewController
 {
     var userRequestsList: [Request] = []
-    var dao: DAO = ParseDAO()
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        userRequestsList = dao.getUserRequests(0, limit: 0)
+        RequestDAO.getUserRequests(1, limit: 10) { (requests, error) -> Void in
+            if error == nil
+            {
+               self.userRequestsList += requests
+               self.tableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning()

@@ -11,13 +11,18 @@ import UIKit
 class ChatTVC: UITableViewController
 {
     var dealingsList: [Request] = []
-    var dao: DAO = ParseDAO()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        dealingsList = dao.getDealingRequests(0, limit: 0)
+        RequestDAO.getDealingRequests(1, limit: 10) { (dealings, error) -> Void in
+            if error == nil
+            {
+                self.dealingsList += dealings
+                self.tableView.reloadData()
+            }
+        }
         
     }
     
