@@ -8,15 +8,16 @@
 
 import UIKit
 
-class RequestsVC: UITableViewController
+class RequestsVC: UITableViewController, UITableViewDataSource
 {
     var requestsList: [Request] = []
+    var page: Int = 1
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        RequestDAO.getRequests(1, limit: 10) { (requests, error) -> Void in
+        RequestDAO.getRequests(page, limit: 20) { (requests, error) -> Void in
             if error == nil
             {
                 self.requestsList += requests
@@ -36,7 +37,7 @@ class RequestsVC: UITableViewController
     
     @IBAction func insertNewRequest(sender: UIBarButtonItem) {
         
-        //requestsList.insert(NSNull(), atIndex: 0)
+        requestsList.insert(Request(author: UserDAO.getCurrentUser()!), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
@@ -66,8 +67,12 @@ class RequestsVC: UITableViewController
         
         let request : Request = self.requestsList[indexPath.item]
         
+        if request.item ==  nil
+        {
+            cell.textField.userInteractionEnabled = true;
+        }
         
-        cell.textField?.text = request.item.name
+        cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
         

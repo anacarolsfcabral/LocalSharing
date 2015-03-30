@@ -11,12 +11,13 @@ import UIKit
 class UserRequestsVC: UITableViewController
 {
     var userRequestsList: [Request] = []
+    var page: Int = 1
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        RequestDAO.getUserRequests(1, limit: 10) { (requests, error) -> Void in
+        RequestDAO.getUserRequests(page, limit: 10) { (requests, error) -> Void in
             if error == nil
             {
                self.userRequestsList += requests
@@ -49,7 +50,7 @@ class UserRequestsVC: UITableViewController
         let request : Request = self.userRequestsList[indexPath.item]
         
         
-        cell.textField?.text = request.item.name
+        cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
         

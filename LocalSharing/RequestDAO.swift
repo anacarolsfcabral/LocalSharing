@@ -90,7 +90,7 @@ class RequestDAO
     // Respond request
     class func respondRequest(request: Request!, hasItem: Bool!, then callback: (Request, NSError?) -> Void)
     {
-        PFCloud.callFunctionInBackground("respondRequest", withParameters: ["requestId": request.id, "hasItem": hasItem])
+        PFCloud.callFunctionInBackground("respondRequest", withParameters: ["requestId": request.id!, "hasItem": hasItem])
             {
                 (pfResult, error) in
                 if error == nil
@@ -107,7 +107,7 @@ class RequestDAO
     // Cancel deal
     class func cancelDeal(request: Request!, then callback: (Request, NSError?) -> Void)
     {
-        PFCloud.callFunctionInBackground("cancelDeal", withParameters: ["requestId": request.id])
+        PFCloud.callFunctionInBackground("cancelDeal", withParameters: ["requestId": request.id!])
             {
                 (pfResult, error) in
                 if error == nil
@@ -124,7 +124,7 @@ class RequestDAO
     // Close request
     class func closeRequest(request: Request!, successful: Bool!, then callback: (Request, NSError?) -> Void)
     {
-        PFCloud.callFunctionInBackground("closeRequest", withParameters: ["requestId": request.id, "successful": successful])
+        PFCloud.callFunctionInBackground("closeRequest", withParameters: ["requestId": request.id!, "successful": successful])
             {
                 (pfResult, error) in
                 if error == nil

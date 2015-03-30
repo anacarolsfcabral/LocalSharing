@@ -11,12 +11,13 @@ import UIKit
 class ChatTVC: UITableViewController
 {
     var dealingsList: [Request] = []
+    var page: Int = 1
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        RequestDAO.getDealingRequests(1, limit: 10) { (dealings, error) -> Void in
+        RequestDAO.getDealingRequests(page, limit: 10) { (dealings, error) -> Void in
             if error == nil
             {
                 self.dealingsList += dealings

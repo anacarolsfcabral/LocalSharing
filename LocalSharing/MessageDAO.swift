@@ -16,7 +16,7 @@ class MessageDAO
     {
         var message: Message?
         
-        PFCloud.callFunctionInBackground("sendMessage", withParameters: ["requestId": request.id, "content": content])
+        PFCloud.callFunctionInBackground("sendMessage", withParameters: ["requestId": request.id!, "content": content])
             {
                 (pfResult, error) in
                 if error == nil
@@ -33,7 +33,7 @@ class MessageDAO
     {
         var messages: [Message] = []
         
-        PFCloud.callFunctionInBackground("getMessages", withParameters: ["requestId": request.id, "page": page ?? NSNull(), "limit": limit ?? NSNull()])
+        PFCloud.callFunctionInBackground("getMessages", withParameters: ["requestId": request.id!, "page": page ?? NSNull(), "limit": limit ?? NSNull()])
             {
                 (pfResults, error) in
                 if error == nil
