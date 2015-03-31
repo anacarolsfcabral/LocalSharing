@@ -19,8 +19,7 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        
-        //userPicture = self.imageViewShapedAsHexagon()
+
         self.textField.delegate = self
     }
     
@@ -32,7 +31,6 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     
     func textFieldDidBeginEditing(textField: UITextField)
     {
-        
         println("typing")
     }
     
@@ -75,8 +73,28 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         self.textField.resignFirstResponder()
-
         self.textField.userInteractionEnabled = false
+        
+        //sem certeza se o método abaixo está criando requests no DB
+        RequestDAO.createRequest(textField.text, then: { (request, error) -> Void in
+            if textField.text == ""
+            {
+                let alert = UIAlertView()
+                alert.title = "Ops!"
+                alert.message = "Você precisa preencher o item."
+                alert.addButtonWithTitle("Ok")
+                alert.delegate = self
+                alert.show()
+                
+                self.textField.userInteractionEnabled = true
+            
+            }
+            if error == nil
+            {
+                
+            }
+        
+        })
         
         return true
     }
