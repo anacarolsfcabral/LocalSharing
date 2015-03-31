@@ -24,10 +24,14 @@ class RequestsVC: UITableViewController, UITableViewDataSource
                 self.tableView.reloadData()
             }
         }
-
+        
+        var backgroundView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = backgroundView
+        self.tableView.backgroundColor = UIColor.whiteColor()
 
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
     }
     
     override func didReceiveMemoryWarning()
@@ -77,6 +81,38 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.userPicture?.image = request.author.picture
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        
+        if editingStyle == .Delete
+        {
+            let request : Request = self.requestsList[indexPath.item]
+            
+            if request.author.name == UserDAO.getCurrentUser()?.name
+            {
+                self.requestsList.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                
+                //sem certeza se o método abaixo está deletando do DB
+                RequestDAO.closeRequest(request, successful: false, then: { (request, error) -> Void in
+                    if error == nil
+                    {
+                    
+                    }
+                })
+            }
+            else
+            {
+                if editingStyle == .None
+                {
+                
+                }
+                self.editButtonItem().enabled = false
+            }
+            
+        }
     }
     
 }

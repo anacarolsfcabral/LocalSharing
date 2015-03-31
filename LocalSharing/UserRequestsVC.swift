@@ -24,6 +24,10 @@ class UserRequestsVC: UITableViewController
                self.tableView.reloadData()
             }
         }
+        
+        var backgroundView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = backgroundView
+        self.tableView.backgroundColor = UIColor.whiteColor()
     }
 
     override func didReceiveMemoryWarning()
