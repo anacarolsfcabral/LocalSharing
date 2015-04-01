@@ -11,13 +11,23 @@ import UIKit
 class UserRequestsVC: UITableViewController
 {
     var userRequestsList: [Request] = []
-    var dao: DAO = ParseDAO()
+    var page: Int = 1
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        userRequestsList = dao.getUserRequests(0, limit: 0)
+        RequestDAO.getUserRequests(page, limit: 10) { (requests, error) -> Void in
+            if error == nil
+            {
+               self.userRequestsList += requests
+               self.tableView.reloadData()
+            }
+        }
+        
+        var backgroundView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = backgroundView
+        self.tableView.backgroundColor = UIColor.whiteColor()
     }
 
     override func didReceiveMemoryWarning()
@@ -44,9 +54,15 @@ class UserRequestsVC: UITableViewController
         let request : Request = self.userRequestsList[indexPath.item]
         
         
-        cell.textField?.text = request.item.name
+        cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
+        cell.userPicture.layer.borderWidth=1.0
+        cell.userPicture.layer.masksToBounds = false
+        cell.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.userPicture.layer.cornerRadius = 13
+        cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
+        cell.userPicture.clipsToBounds = true
         
         
         return cell

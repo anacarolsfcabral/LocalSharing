@@ -8,18 +8,30 @@
 
 import UIKit
 
-class RequestsVC: UITableViewController
+class RequestsVC: UITableViewController, UITableViewDataSource
 {
     var requestsList: [Request] = []
-    var dao: DAO = ParseDAO()
+    var page: Int = 1
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        requestsList = dao.getRequests(0, limit: 0)
+        RequestDAO.getRequests(page, limit: 20) { (requests, error) -> Void in
+            if error == nil
+            {
+                self.requestsList += requests
+                self.tableView.reloadData()
+            }
+        }
+        
+        var backgroundView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = backgroundView
+        self.tableView.backgroundColor = UIColor.whiteColor()
+
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
     }
     
     override func didReceiveMemoryWarning()
@@ -29,7 +41,7 @@ class RequestsVC: UITableViewController
     
     @IBAction func insertNewRequest(sender: UIBarButtonItem) {
         
-        //requestsList.insert(NSNull(), atIndex: 0)
+        requestsList.insert(Request(author: UserDAO.getCurrentUser()!), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
@@ -59,12 +71,55 @@ class RequestsVC: UITableViewController
         
         let request : Request = self.requestsList[indexPath.item]
         
+        if request.item ==  nil
+        {
+            cell.textField.userInteractionEnabled = true;
+        }
         
-        cell.textField?.text = request.item.name
+        cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
+        cell.userPicture.layer.borderWidth=1.0
+        cell.userPicture.layer.masksToBounds = false
+        cell.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.userPicture.layer.cornerRadius = 8
+        //cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
+        cell.userPicture.clipsToBounds = true
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        
+        if editingStyle == .Delete
+        {
+            let request : Request = self.requestsList[indexPath.item]
+            
+            if request.author.name == UserDAO.getCurrentUser()?.name
+            {
+                self.requestsList.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                
+                //sem certeza se o método abaixo está deletando do DB
+                RequestDAO.closeRequest(request, successful: false, then: { (request, error) -> Void in
+                    if error == nil
+                    {
+                    println("ta quaseee")
+                    }
+                })
+            }
+            else
+            {
+                self.editButtonItem().enabled = false
+                if editingStyle == .None
+                {
+                    
+                }
+            }
+            
+            
+        }
     }
     
 }
