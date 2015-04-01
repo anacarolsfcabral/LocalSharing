@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--Meu Perfil-->
         <scene sceneID="HVJ-QK-AZZ">
             <objects>
                 <viewController id="HGd-we-ZEn" customClass="ProfileVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Et1-K3-jXX">
-                                <rect key="frame" x="200" y="55" width="200" height="200"/>
+                                <rect key="frame" x="200" y="120" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="2d5-Yh-nNs"/>
                                     <constraint firstAttribute="width" constant="200" id="XNf-pq-Fga"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q11-F5-GHE">
-                                <rect key="frame" x="180" y="336" width="240" height="23"/>
+                                <rect key="frame" x="180" y="370" width="240" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="ySa-ft-PtJ"/>
                                 </constraints>
@@ -34,15 +34,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Et1-K3-jXX" secondAttribute="centerX" id="9YS-aN-tDN"/>
                             <constraint firstItem="Et1-K3-jXX" firstAttribute="centerX" secondItem="q11-F5-GHE" secondAttribute="centerX" id="c3N-6h-Sd0"/>
-                            <constraint firstItem="q11-F5-GHE" firstAttribute="top" secondItem="Et1-K3-jXX" secondAttribute="bottom" constant="81" id="fEC-z6-L5Z"/>
-                            <constraint firstItem="Et1-K3-jXX" firstAttribute="top" secondItem="Dtj-2T-Dy5" secondAttribute="bottom" constant="35" id="sHk-lT-B1H"/>
+                            <constraint firstItem="q11-F5-GHE" firstAttribute="top" secondItem="Et1-K3-jXX" secondAttribute="bottom" constant="50" id="fEC-z6-L5Z"/>
+                            <constraint firstItem="Et1-K3-jXX" firstAttribute="top" secondItem="Dtj-2T-Dy5" secondAttribute="bottom" constant="56" id="sHk-lT-B1H"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="aBS-vO-yJe"/>
+                    <navigationItem key="navigationItem" title="Meu Perfil" id="46H-fq-2mz"/>
                     <connections>
                         <outlet property="userName" destination="q11-F5-GHE" id="zQq-ek-4rZ"/>
                         <outlet property="userPicture" destination="Et1-K3-jXX" id="Bet-6I-QSx"/>
@@ -50,47 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GqJ-39-KvS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-532" y="672"/>
-        </scene>
-        <!--Chats-->
-        <scene sceneID="wg7-f3-ORb">
-            <objects>
-                <viewController id="8rJ-Kc-sve" customClass="ChatTVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
-                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="195" y="279" width="210" height="42"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by ChatTVC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="235" y="329" width="131" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Chats" image="second" id="cPa-gy-q4n"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="108" y="842"/>
+            <point key="canvasLocation" x="39" y="1679"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="7e5-nO-51u">
@@ -141,7 +101,7 @@
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.92156862745098034" green="0.94509803921568625" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="EPh-JP-X41" secondAttribute="centerY" constant="-163.5" id="6Fg-Ef-PPz"/>
                             <constraint firstAttribute="centerX" secondItem="1nQ-20-Qoh" secondAttribute="centerX" id="DmN-IJ-brm"/>
@@ -180,8 +140,8 @@
                     <connections>
                         <segue destination="zpv-mk-cTv" kind="relationship" relationship="viewControllers" id="020-TQ-mZ0"/>
                         <segue destination="5hr-5b-bLx" kind="relationship" relationship="viewControllers" id="Wsf-8V-ZRX"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="HGd-we-ZEn" kind="relationship" relationship="viewControllers" id="f4U-7U-yK4"/>
+                        <segue destination="n6g-Ds-8BA" kind="relationship" relationship="viewControllers" id="tqX-zT-fiT"/>
+                        <segue destination="dpf-nO-mPt" kind="relationship" relationship="viewControllers" id="f4U-7U-yK4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -275,7 +235,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD6-yP-bxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="-174"/>
+            <point key="canvasLocation" x="1570" y="-622"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FVg-Jm-dcx">
@@ -287,6 +247,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uvf-D2-YR7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10196078431372549" green="0.56470588235294117" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="2SC-Pi-LdL" kind="relationship" relationship="rootViewController" id="hLh-bp-rar"/>
@@ -294,7 +258,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQh-0h-Y6r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686" y="-174"/>
+            <point key="canvasLocation" x="790" y="-630"/>
         </scene>
         <!--My Requests-->
         <scene sceneID="d1m-nR-fut">
@@ -360,7 +324,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtT-84-a3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="672"/>
+            <point key="canvasLocation" x="1570" y="176"/>
         </scene>
         <!--My Requests-->
         <scene sceneID="Jd0-Js-Mtp">
@@ -370,6 +334,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="T4e-Do-0Nv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10196078431372549" green="0.55686274509803924" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="stp-vz-bpW" kind="relationship" relationship="rootViewController" id="eXP-Lp-Dbj"/>
@@ -377,7 +345,78 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8o-zF-eFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="798" y="672"/>
+            <point key="canvasLocation" x="790" y="160"/>
+        </scene>
+        <!--Chats-->
+        <scene sceneID="gBU-Hh-pMS">
+            <objects>
+                <tableViewController id="4Yd-tu-z23" customClass="ChatTVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VpQ-da-4fd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mxP-qe-qIV">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mxP-qe-qIV" id="t8J-Gd-j4B">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4Yd-tu-z23" id="ChO-2W-vM1"/>
+                            <outlet property="delegate" destination="4Yd-tu-z23" id="Jc8-YB-4Yx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Chats" id="T4w-Ko-3oO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zit-3H-Zlx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1590" y="890"/>
+        </scene>
+        <!--Chats-->
+        <scene sceneID="5qy-RR-XEG">
+            <objects>
+                <navigationController id="n6g-Ds-8BA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chats" id="Jah-AF-YhK"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="crd-jB-ynQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10196078431372549" green="0.56470588235294117" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.99363951589999999" blue="0.97414833109999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4Yd-tu-z23" kind="relationship" relationship="rootViewController" id="J8B-NS-6Ma"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tOb-S2-RRu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="790" y="890"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="DSv-LF-vCl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dpf-nO-mPt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="aBS-vO-yJe"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WQQ-eI-CL0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10196078431372549" green="0.56470588235294117" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HGd-we-ZEn" kind="relationship" relationship="rootViewController" id="lld-Tq-zAx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14b-dV-Lod" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="898"/>
         </scene>
     </scenes>
     <resources>
@@ -387,7 +426,6 @@
         <image name="informationIcon.png" width="134" height="130"/>
         <image name="logo.png" width="389" height="347"/>
         <image name="nop" width="22" height="22"/>
-        <image name="second" width="30" height="30"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -79,6 +79,12 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
+        cell.userPicture.layer.borderWidth=1.0
+        cell.userPicture.layer.masksToBounds = false
+        cell.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.userPicture.layer.cornerRadius = 8
+        //cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
+        cell.userPicture.clipsToBounds = true
         
         return cell
     }
@@ -99,18 +105,19 @@ class RequestsVC: UITableViewController, UITableViewDataSource
                 RequestDAO.closeRequest(request, successful: false, then: { (request, error) -> Void in
                     if error == nil
                     {
-                    
+                    println("ta quaseee")
                     }
                 })
             }
             else
             {
+                self.editButtonItem().enabled = false
                 if editingStyle == .None
                 {
-                
+                    
                 }
-                self.editButtonItem().enabled = false
             }
+            
             
         }
     }

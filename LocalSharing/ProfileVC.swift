@@ -21,6 +21,12 @@ class ProfileVC: UIViewController
         
         var user = UserDAO.getCurrentUser()
         self.userPicture.image = user?.picture
+        self.userPicture.layer.borderWidth=1.0
+        self.userPicture.layer.masksToBounds = false
+        self.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
+        self.userPicture.layer.cornerRadius = 13
+        self.userPicture.layer.cornerRadius = self.userPicture.frame.size.height/2
+        self.userPicture.clipsToBounds = true
         
         userName.text = user?.name
 
