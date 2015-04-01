@@ -18,6 +18,7 @@ class ParseDAO
                 id: user.objectId,
                 name: user["name"] as String,
                 picture: UIImage(data: NSData(contentsOfURL: NSURL(string: user["photo"] as String)!)!),
+                pictureLarge: UIImage(data: NSData(contentsOfURL: NSURL(string: user["photo"] as String + "?type=large")!)!),
                 requestLimit: user["requestsLimit"] as Int
             )
         }
