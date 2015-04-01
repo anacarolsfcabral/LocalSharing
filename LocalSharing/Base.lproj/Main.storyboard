@@ -203,6 +203,9 @@
                                                 <constraint firstAttribute="height" constant="28" id="pQZ-Ik-Mug"/>
                                             </constraints>
                                             <state key="normal" image="check"/>
+                                            <connections>
+                                                <action selector="iDoHave:" destination="2SC-Pi-LdL" eventType="touchUpInside" id="iU6-0I-96W"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -238,6 +241,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="s7G-fi-MI1" kind="custom" identifier="goToDealing" id="sgI-h4-ecS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD6-yP-bxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -375,10 +381,46 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Chats" id="T4w-Ko-3oO"/>
+                    <connections>
+                        <segue destination="s7G-fi-MI1" kind="custom" id="sG6-I7-njp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zit-3H-Zlx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1590" y="890"/>
+            <point key="canvasLocation" x="1576" y="890"/>
+        </scene>
+        <!--DealingVC-->
+        <scene sceneID="CkS-Ba-LBG">
+            <objects>
+                <tableViewController id="s7G-fi-MI1" customClass="DealingVC" customModule="LocalSharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bKp-cF-S4T">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DxI-xu-uSZ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DxI-xu-uSZ" id="6Ab-89-G1Z">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="k38-YZ-c3k">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k38-YZ-c3k" id="uV3-j6-pQ5">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="s7G-fi-MI1" id="74M-TN-SE0"/>
+                            <outlet property="delegate" destination="s7G-fi-MI1" id="yNJ-Xz-8Ra"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a8x-T1-Meo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2470" y="160"/>
         </scene>
         <!--Chats-->
         <scene sceneID="5qy-RR-XEG">
@@ -432,5 +474,8 @@
         <image name="informationIcon.png" width="134" height="130"/>
         <image name="logo.png" width="389" height="347"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sG6-I7-njp"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -29,11 +29,25 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
+        self.tableView.separatorInset = UIEdgeInsetsZero
         self.tableView.backgroundColor = UIColor.whiteColor()
 
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
+    }
+    
+    @IBAction func iDoHave(sender: AnyObject)
+    {
+//        RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
+//            if error == error
+//            {
+//            }
+//        }
+        
+        
+            self.performSegueWithIdentifier("goToDealing", sender: sender)
+            
     }
     
     func presentAlert(notification:NSNotification){
@@ -92,6 +106,9 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
         cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
         cell.userPicture.clipsToBounds = true
+        
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
         
         return cell
     }
