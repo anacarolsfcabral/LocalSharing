@@ -13,17 +13,21 @@ class AlertVC : UIViewController
  
     override func viewDidLoad()
     {
-        var alertView: CGRect = CGRectMake(view.frame.size.width/2-125, view.frame.size.height/2-160, 250, 200)
+        let alertViewWidth: CGFloat = 250
+        let alertViewHeight: CGFloat = 200
+        
+        var alertView: CGRect = CGRectMake((view.frame.size.width - alertViewWidth) * 0.5, ((view.frame.size.height - alertViewHeight) * 0.5) - 80, alertViewWidth, alertViewHeight)
         var screen: UIView = UIView(frame: alertView)
         screen.layer.cornerRadius = 10
         screen.backgroundColor = UIColor.greenColor()
      
         var button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        button.frame = CGRectMake(100, 100, 100, 50)
+        button.frame = CGRectMake((screen.frame.size.width - 30) * 0.5, (screen.frame.size.height - 30) * 0.5, 30, 30)
+        button.layer.cornerRadius = 10
         button.backgroundColor = UIColor.redColor()
-        button.setTitle("Button", forState: UIControlState.Normal)
+        button.setTitle("Ok", forState: UIControlState.Normal)
         button.addTarget(self, action: "Action:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(button)
+        screen.addSubview(button)
         
 //        screen.backgroundColor = UIColor(red: 235, green: 241, blue: 240, alpha: 1)
         
