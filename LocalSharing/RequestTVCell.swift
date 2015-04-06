@@ -23,7 +23,7 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
         super.awakeFromNib()
 
         self.textField.delegate = self
-        self.userName.textAlignment = .Left;
+        self.userName.textAlignment = .Left
     }
     
     override func setSelected(selected: Bool, animated: Bool)

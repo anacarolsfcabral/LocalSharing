@@ -8,29 +8,56 @@
 
 import UIKit
 
-class DealingVC: UIViewController {
+class DealingVC: UIViewController, UITextFieldDelegate, UITableViewDelegate {
 
     var page: Int = 1
     var messages: [Message] = []
     var request: Request?
-    @IBOutlet weak var viewTextField: UIView!
+    @IBOutlet weak var viewTextField: UITextField!
     @IBOutlet weak var dealingTableView: UITableView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MessageDAO.getMessages(request, page: page, limit: 30) { (message, error) -> Void in
+        MessageDAO.getMessages(request, page: page, limit: 30) { (messages, error) -> Void in
             if error == nil
             {
+                self.messages += messages
+                self.dealingTableView.reloadData()
             }
         }
+        
+        self.viewTextField.delegate = self
     }
     
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        MessageDAO.sendMessage(request, content: self.viewTextField.text) { (message, error) -> Void in
+            println(message)
+            self.messages.append(message!)
+            self.dealingTableView.reloadData()
+        }
+        
+        self.viewTextField.text = ""
+        
+        return true
+    }
+    
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        
+        let message : Message = self.messages[indexPath.item]
+       
+        cell.textLabel?.text = message.content
+        
+        return cell
     }
     
 
