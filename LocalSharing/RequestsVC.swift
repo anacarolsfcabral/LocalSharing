@@ -17,8 +17,6 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentAlert:", name: "goToAlert", object: nil);
-        
         RequestDAO.getRequests(page, limit: 20) { (requests, error) -> Void in
             if error == nil
             {
@@ -26,6 +24,21 @@ class RequestsVC: UITableViewController, UITableViewDataSource
                 self.tableView.reloadData()
             }
         }
+        
+        var feedIconBar: UITabBarItem = self.tabBarController?.tabBar.items![0] as UITabBarItem
+        feedIconBar.image = UIImage(named: "feedIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        var tradeIconBar: UITabBarItem = self.tabBarController?.tabBar.items![1] as UITabBarItem
+        tradeIconBar.image = UIImage(named: "tradeIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        var messageIconBar: UITabBarItem = self.tabBarController?.tabBar.items![2] as UITabBarItem
+        messageIconBar.image = UIImage(named: "messageIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        var profileIconBar: UITabBarItem = self.tabBarController?.tabBar.items![3] as UITabBarItem
+        profileIconBar.image = UIImage(named: "profileIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        
+        
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
@@ -39,21 +52,13 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     
     @IBAction func iDoHave(sender: AnyObject)
     {
-//        RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
-//            if error == error
-//            {
-//            }
-//        }
-        
-        
+        RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
+            if error == error
+            {
+            }
+        }
             self.performSegueWithIdentifier("goToDealing", sender: sender)
             
-    }
-    
-    func presentAlert(notification:NSNotification){
-        let alert: AlertVC = AlertVC()
-        alert.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-        presentViewController(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning()
@@ -63,12 +68,23 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     
     @IBAction func insertNewRequest(sender: UIBarButtonItem) {
         
-        requestsList.insert(Request(author: UserDAO.getCurrentUser()!), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        if UserDAO.getCurrentUser()?.requestLimit == 0
+        {
+            let alert = UIAlertView()
+            alert.title = "Ops!"
+            alert.message = "Acabaram seus RPs!"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+        }
+        else
+        {
+            requestsList.insert(Request(author: UserDAO.getCurrentUser()!), atIndex: 0)
+            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
-        var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
-        cell.textField.becomeFirstResponder()
+            var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
+            cell.textField.becomeFirstResponder()
+        }
     
     }
 
@@ -101,9 +117,9 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
-        cell.userPicture.layer.borderWidth=1.0
+        cell.userPicture.layer.borderWidth=2.0
         cell.userPicture.layer.masksToBounds = false
-        cell.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.userPicture.layer.borderColor = UIColor(red: 41.0/255, green: 166.0/255, blue: 117.0/255, alpha: 1.0).CGColor
         cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
         cell.userPicture.clipsToBounds = true
         
@@ -120,10 +136,8 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         {
             let request : Request = self.requestsList[indexPath.item]
             
-            if request.author.id == UserDAO.getCurrentUser()?.id
+            if request.id != nil && request.author.id == UserDAO.getCurrentUser()?.id
             {
-                self.requestsList.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 
                 RequestDAO.closeRequest(request, successful: false, then: { (request, error) -> Void in
                     if error == nil
@@ -131,6 +145,9 @@ class RequestsVC: UITableViewController, UITableViewDataSource
                     }
                 })
             }
+            
+            self.requestsList.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
     
@@ -150,3 +167,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     
     
 }
+
+//var alert = UIAlertController(title: "Ops!", message: "Você esqueceu de preencher o item!", preferredStyle: UIAlertControllerStyle.Alert)
+//alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+//self.presentViewController(alert, animated: true, completion: nil)

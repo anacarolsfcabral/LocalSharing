@@ -124,6 +124,7 @@ class RequestDAO
     // Close request
     class func closeRequest(request: Request!, successful: Bool!, then callback: (Request, NSError?) -> Void)
     {
+        
         PFCloud.callFunctionInBackground("closeRequest", withParameters: ["requestId": request.id!, "successful": successful])
             {
                 (pfResult, error) in
