@@ -17,8 +17,6 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     {
         super.viewDidLoad()
         
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentAlert:", name: "goToAlert", object: nil);
-        
         RequestDAO.getRequests(page, limit: 20) { (requests, error) -> Void in
             if error == nil
             {
@@ -63,12 +61,6 @@ class RequestsVC: UITableViewController, UITableViewDataSource
             
     }
     
-//    func presentAlert(notification:NSNotification){
-//        let alert: AlertVC = AlertVC()
-//        alert.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-//        presentViewController(alert, animated: true, completion: nil)
-//    }
-    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -76,12 +68,23 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     
     @IBAction func insertNewRequest(sender: UIBarButtonItem) {
         
-        requestsList.insert(Request(author: UserDAO.getCurrentUser()!), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        if UserDAO.getCurrentUser()?.requestLimit == 0
+        {
+            let alert = UIAlertView()
+            alert.title = "Ops!"
+            alert.message = "Acabaram seus RPs!"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+        }
+        else
+        {
+            requestsList.insert(Request(author: UserDAO.getCurrentUser()!), atIndex: 0)
+            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
-        var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
-        cell.textField.becomeFirstResponder()
+            var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
+            cell.textField.becomeFirstResponder()
+        }
     
     }
 
@@ -164,3 +167,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     
     
 }
+
+//var alert = UIAlertController(title: "Ops!", message: "Você esqueceu de preencher o item!", preferredStyle: UIAlertControllerStyle.Alert)
+//alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+//self.presentViewController(alert, animated: true, completion: nil)

@@ -41,15 +41,19 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
         if textField.text == ""
         {
             self.textField.userInteractionEnabled = true
-            NSNotificationCenter.defaultCenter().postNotificationName("goToAlert", object: nil);
+            let alert = UIAlertView()
+            alert.title = "Ops!"
+            alert.message = "Você esqueceu de preencher o nome do item!"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
         }
         else
         {
             RequestDAO.createRequest(textField.text, then: { (request, error) -> Void in
-                if error == nil
-                {
+            if error == nil
+            {
                     
-                }
+            }
                 
             })
         }
