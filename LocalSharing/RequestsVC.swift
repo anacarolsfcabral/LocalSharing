@@ -49,7 +49,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
     }
-    
+
     @IBAction func iDoHave(sender: AnyObject)
     {
         RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
@@ -58,7 +58,6 @@ class RequestsVC: UITableViewController, UITableViewDataSource
             }
         }
             self.performSegueWithIdentifier("goToDealing", sender: sender)
-            
     }
     
     override func didReceiveMemoryWarning()
@@ -114,6 +113,8 @@ class RequestsVC: UITableViewController, UITableViewDataSource
             cell.textField.userInteractionEnabled = true;
         }
         
+        cell.parent = self
+        cell.request = request
         cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
@@ -165,6 +166,14 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (sender as? RequestTVCell) != nil
+        {
+            let cell = sender as RequestTVCell
+            let destination = segue.destinationViewController as DealingVC
+            destination.request = cell.request
+        }
+    }
     
 }
 
