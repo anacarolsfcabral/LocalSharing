@@ -17,7 +17,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentAlert:", name: "goToAlert", object: nil);
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentAlert:", name: "goToAlert", object: nil);
         
         RequestDAO.getRequests(page, limit: 20) { (requests, error) -> Void in
             if error == nil
@@ -63,11 +63,11 @@ class RequestsVC: UITableViewController, UITableViewDataSource
             
     }
     
-    func presentAlert(notification:NSNotification){
-        let alert: AlertVC = AlertVC()
-        alert.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-        presentViewController(alert, animated: true, completion: nil)
-    }
+//    func presentAlert(notification:NSNotification){
+//        let alert: AlertVC = AlertVC()
+//        alert.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+//        presentViewController(alert, animated: true, completion: nil)
+//    }
     
     override func didReceiveMemoryWarning()
     {
@@ -133,10 +133,8 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         {
             let request : Request = self.requestsList[indexPath.item]
             
-            if request.author.id == UserDAO.getCurrentUser()?.id
+            if request.id != nil && request.author.id == UserDAO.getCurrentUser()?.id
             {
-                self.requestsList.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 
                 RequestDAO.closeRequest(request, successful: false, then: { (request, error) -> Void in
                     if error == nil
@@ -144,6 +142,9 @@ class RequestsVC: UITableViewController, UITableViewDataSource
                     }
                 })
             }
+            
+            self.requestsList.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
     
