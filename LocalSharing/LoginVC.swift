@@ -20,6 +20,7 @@ class LoginVC: UIViewController
     {
         if UserDAO.getCurrentUser() != nil
         {
+            UserDAO.login { (user, error) -> Void in }
             self.performSegueWithIdentifier("goToRequests", sender: UIButton())
         }
     }
