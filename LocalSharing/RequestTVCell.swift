@@ -26,8 +26,6 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     
     override func setSelected(selected: Bool, animated: Bool)
     {
-        super.setSelected(selected, animated: animated)
-        
     }
     
     func textFieldDidBeginEditing(textField: UITextField)
