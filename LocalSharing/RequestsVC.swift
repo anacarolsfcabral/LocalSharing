@@ -52,17 +52,6 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         
     }
     
-    @IBAction func iDoHave(sender: AnyObject)
-    {
-        RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
-            if error == error
-            {
-            }
-        }
-            self.performSegueWithIdentifier("goToDealing", sender: sender)
-            
-    }
-    
     func presentAlert(notification:NSNotification){
         let alert: AlertVC = AlertVC()
         alert.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
@@ -111,6 +100,8 @@ class RequestsVC: UITableViewController, UITableViewDataSource
             cell.textField.userInteractionEnabled = true;
         }
         
+        cell.parent = self
+        cell.request = request
         cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
@@ -161,5 +152,13 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (sender as? RequestTVCell) != nil
+        {
+            let cell = sender as RequestTVCell
+            let destination = segue.destinationViewController as DealingVC
+            destination.request = cell.request
+        }
+    }
     
 }

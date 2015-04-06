@@ -10,15 +10,23 @@ import UIKit
 
 class DealingVC: UIViewController {
 
+    var page: Int = 1
+    var messages: [Message] = []
+    var request: Request?
+    @IBOutlet weak var viewTextField: UIView!
+    @IBOutlet weak var dealingTableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        MessageDAO.getMessages(request, page: page, limit: 30) { (message, error) -> Void in
-//            if erro == nil
-//            {
-//            }
-//        }
+        
+        MessageDAO.getMessages(request, page: page, limit: 30) { (message, error) -> Void in
+            if error == nil
+            {
+            }
+        }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

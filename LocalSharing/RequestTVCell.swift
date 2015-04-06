@@ -14,6 +14,8 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userPicture: UIImageView!
+    var request: Request?
+    var parent: RequestsVC?
     
     
     override func awakeFromNib()
@@ -28,9 +30,15 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     {
     }
     
-    func textFieldDidBeginEditing(textField: UITextField)
+    @IBAction func iDoHave(sender: AnyObject)
     {
-        println("typing")
+        RequestDAO.respondRequest(request!, hasItem: true) { (request, error) -> Void in
+            if error == nil
+            {
+            }
+        }
+        parent!.performSegueWithIdentifier("goToDealing", sender: self)
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
