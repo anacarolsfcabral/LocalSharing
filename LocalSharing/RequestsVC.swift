@@ -27,6 +27,21 @@ class RequestsVC: UITableViewController, UITableViewDataSource
             }
         }
         
+        var feedIconBar: UITabBarItem = self.tabBarController?.tabBar.items![0] as UITabBarItem
+        feedIconBar.image = UIImage(named: "feedIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        var tradeIconBar: UITabBarItem = self.tabBarController?.tabBar.items![1] as UITabBarItem
+        tradeIconBar.image = UIImage(named: "tradeIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        var messageIconBar: UITabBarItem = self.tabBarController?.tabBar.items![2] as UITabBarItem
+        messageIconBar.image = UIImage(named: "messageIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        var profileIconBar: UITabBarItem = self.tabBarController?.tabBar.items![3] as UITabBarItem
+        profileIconBar.image = UIImage(named: "profileIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        
+        
+        
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
         self.tableView.separatorInset = UIEdgeInsetsZero
@@ -39,13 +54,11 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     
     @IBAction func iDoHave(sender: AnyObject)
     {
-//        RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
-//            if error == error
-//            {
-//            }
-//        }
-        
-        
+        RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
+            if error == error
+            {
+            }
+        }
             self.performSegueWithIdentifier("goToDealing", sender: sender)
             
     }
@@ -101,9 +114,9 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.textField?.text = request.item?.name
         cell.userName?.text = request.author.name
         cell.userPicture?.image = request.author.picture
-        cell.userPicture.layer.borderWidth=1.0
+        cell.userPicture.layer.borderWidth=2.0
         cell.userPicture.layer.masksToBounds = false
-        cell.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.userPicture.layer.borderColor = UIColor(red: 41.0/255, green: 166.0/255, blue: 117.0/255, alpha: 1.0).CGColor
         cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
         cell.userPicture.clipsToBounds = true
         

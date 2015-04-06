@@ -24,6 +24,7 @@
 		37648B091AB77303006058FE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B081AB77303006058FE /* libsqlite3.dylib */; };
 		37648B0E1AB775ED006058FE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B0D1AB775ED006058FE /* FacebookSDK.framework */; };
 		37648B101AB78132006058FE /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37648B0F1AB78132006058FE /* ParseFacebookUtils.framework */; };
+		F0147C711AD2F8E90076EDBD /* DealingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0147C701AD2F8E90076EDBD /* DealingVC.swift */; };
 		F02877C31AB76A4000000DB7 /* RequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C21AB76A4000000DB7 /* RequestsVC.swift */; };
 		F02877C51AB76A6200000DB7 /* ChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C41AB76A6200000DB7 /* ChatTVC.swift */; };
 		F02877C71AB76AC400000DB7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02877C61AB76AC400000DB7 /* ProfileVC.swift */; };
@@ -37,7 +38,6 @@
 		F0AE968F1AB8C0B8005F36D8 /* RequestTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE968B1AB88C1D005F36D8 /* RequestTVCell.swift */; };
 		F0AE96911AB8CE65005F36D8 /* UserRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE96901AB8CE65005F36D8 /* UserRequestsVC.swift */; };
 		F0B311751ACC7711003E5558 /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B311741ACC7711003E5558 /* AlertVC.swift */; };
-		F0B311771ACC905A003E5558 /* DealingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B311761ACC905A003E5558 /* DealingVC.swift */; };
 		F0E8BEAB1AC9C46900A0AAD0 /* RequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8BEAA1AC9C46900A0AAD0 /* RequestDAO.swift */; };
 		F0E8BEAD1AC9C4A700A0AAD0 /* ItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8BEAC1AC9C4A700A0AAD0 /* ItemDAO.swift */; };
 		F0E8BEAF1AC9C4BB00A0AAD0 /* MessageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8BEAE1AC9C4BB00A0AAD0 /* MessageDAO.swift */; };
@@ -77,6 +77,7 @@
 		37648B0A1AB77343006058FE /* LocalSharing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalSharing-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		37648B0D1AB775ED006058FE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		37648B0F1AB78132006058FE /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		F0147C701AD2F8E90076EDBD /* DealingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealingVC.swift; sourceTree = "<group>"; };
 		F02877C21AB76A4000000DB7 /* RequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsVC.swift; sourceTree = "<group>"; };
 		F02877C41AB76A6200000DB7 /* ChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTVC.swift; sourceTree = "<group>"; };
 		F02877C61AB76AC400000DB7 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		F0AE968D1AB8A99B005F36D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		F0AE96901AB8CE65005F36D8 /* UserRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequestsVC.swift; sourceTree = "<group>"; };
 		F0B311741ACC7711003E5558 /* AlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
-		F0B311761ACC905A003E5558 /* DealingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealingVC.swift; sourceTree = "<group>"; };
 		F0E8BEAA1AC9C46900A0AAD0 /* RequestDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDAO.swift; sourceTree = "<group>"; };
 		F0E8BEAC1AC9C4A700A0AAD0 /* ItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDAO.swift; sourceTree = "<group>"; };
 		F0E8BEAE1AC9C4BB00A0AAD0 /* MessageDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDAO.swift; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 				F0AE96901AB8CE65005F36D8 /* UserRequestsVC.swift */,
 				F02877C41AB76A6200000DB7 /* ChatTVC.swift */,
 				F02877C61AB76AC400000DB7 /* ProfileVC.swift */,
-				F0B311761ACC905A003E5558 /* DealingVC.swift */,
 				F0B311741ACC7711003E5558 /* AlertVC.swift */,
+				F0147C701AD2F8E90076EDBD /* DealingVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 				F02877C31AB76A4000000DB7 /* RequestsVC.swift in Sources */,
 				F0AE968E1AB8A99B005F36D8 /* Request.swift in Sources */,
 				F0E8BEB11AC9C61200A0AAD0 /* ParseDAO.swift in Sources */,
-				F0B311771ACC905A003E5558 /* DealingVC.swift in Sources */,
+				F0147C711AD2F8E90076EDBD /* DealingVC.swift in Sources */,
 				FB1A387D1AC1758A00512311 /* Message.swift in Sources */,
 				F0E8BEAF1AC9C4BB00A0AAD0 /* MessageDAO.swift in Sources */,
 				F0B311751ACC7711003E5558 /* AlertVC.swift in Sources */,
