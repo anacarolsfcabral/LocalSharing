@@ -14,7 +14,14 @@ class LoginVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        if UserDAO.getCurrentUser() != nil
+        {
+            self.performSegueWithIdentifier("goToRequests", sender: UIButton())
+        }
     }
 
     override func didReceiveMemoryWarning()
