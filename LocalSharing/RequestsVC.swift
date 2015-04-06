@@ -17,6 +17,8 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "presentAlert:", name: "goToAlert", object: nil);
+        
         RequestDAO.getRequests(page, limit: 20) { (requests, error) -> Void in
             if error == nil
             {
@@ -27,11 +29,31 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
+        self.tableView.separatorInset = UIEdgeInsetsZero
         self.tableView.backgroundColor = UIColor.whiteColor()
 
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
+    }
+    
+    @IBAction func iDoHave(sender: AnyObject)
+    {
+//        RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
+//            if error == error
+//            {
+//            }
+//        }
+        
+        
+            self.performSegueWithIdentifier("goToDealing", sender: sender)
+            
+    }
+    
+    func presentAlert(notification:NSNotification){
+        let alert: AlertVC = AlertVC()
+        alert.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning()
@@ -82,9 +104,11 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.userPicture.layer.borderWidth=1.0
         cell.userPicture.layer.masksToBounds = false
         cell.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
-        cell.userPicture.layer.cornerRadius = 8
-        //cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
+        cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
         cell.userPicture.clipsToBounds = true
+        
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
         
         return cell
     }
@@ -96,30 +120,33 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         {
             let request : Request = self.requestsList[indexPath.item]
             
-            if request.author.name == UserDAO.getCurrentUser()?.name
+            if request.author.id == UserDAO.getCurrentUser()?.id
             {
                 self.requestsList.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 
-                //sem certeza se o método abaixo está deletando do DB
                 RequestDAO.closeRequest(request, successful: false, then: { (request, error) -> Void in
                     if error == nil
                     {
-                    println("ta quaseee")
                     }
                 })
             }
-            else
-            {
-                self.editButtonItem().enabled = false
-                if editingStyle == .None
-                {
-                    
-                }
-            }
-            
-            
         }
     }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle
+    {
+        let request : Request = self.requestsList[indexPath.item]
+        
+        if request.author.id != UserDAO.getCurrentUser()?.id
+        {
+            return UITableViewCellEditingStyle.None
+        }
+        else
+        {
+            return UITableViewCellEditingStyle.Delete
+        }
+    }
+    
     
 }
