@@ -33,7 +33,6 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         
         var messageIconBar: UITabBarItem = self.tabBarController?.tabBar.items![2] as UITabBarItem
         messageIconBar.image = UIImage(named: "messageIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        
         var profileIconBar: UITabBarItem = self.tabBarController?.tabBar.items![3] as UITabBarItem
         profileIconBar.image = UIImage(named: "profileIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
@@ -48,16 +47,6 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-    }
-
-    @IBAction func iDoHave(sender: AnyObject)
-    {
-        RequestDAO.respondRequest(requestsList[1], hasItem: true) { (requests, error) -> Void in
-            if error == error
-            {
-            }
-        }
-            self.performSegueWithIdentifier("goToDealing", sender: sender)
     }
     
     override func didReceiveMemoryWarning()
