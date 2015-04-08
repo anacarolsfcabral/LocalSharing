@@ -14,6 +14,9 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userPicture: UIImageView!
+    @IBOutlet var iDoHaveButton: UIButton!
+    @IBOutlet var iDontHaveButton: UIButton!
+    
     var request: Request?
     var parent: RequestsVC?
     
@@ -28,17 +31,6 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     
     override func setSelected(selected: Bool, animated: Bool)
     {
-    }
-    
-    @IBAction func iDoHave(sender: AnyObject)
-    {
-        RequestDAO.respondRequest(request!, hasItem: true) { (request, error) -> Void in
-            if error == nil
-            {
-            }
-        }
-        parent!.performSegueWithIdentifier("goToDealing", sender: self)
-        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -67,5 +59,24 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
         }
         
         return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    {
+        var shouldChange = false
+        
+        if countElements(textField.text) < 17
+        {
+            shouldChange = true
+        }
+        
+        return shouldChange
+    }
+    
+    func hideButton() -> Void
+    {
+        println("Hiden!")
+        self.iDoHaveButton.hidden = true
+        self.iDontHaveButton.hidden = true
     }
 }

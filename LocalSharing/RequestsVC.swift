@@ -8,6 +8,8 @@
 
 import UIKit
 
+var isCreatingItem: Bool = false
+
 class RequestsVC: UITableViewController, UITableViewDataSource
 {
     var requestsList: [Request] = []
@@ -54,24 +56,29 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func insertNewRequest(sender: UIBarButtonItem) {
-        
-        if UserDAO.getCurrentUser()?.requestLimit == 0
+    @IBAction func insertNewRequest(sender: UIBarButtonItem)
+    {
+        if !isCreatingItem
         {
-            let alert = UIAlertView()
-            alert.title = "Ops!"
-            alert.message = "Acabaram seus RPs!"
-            alert.addButtonWithTitle("Ok")
-            alert.show()
-        }
-        else
-        {
-            requestsList.insert(Request(author: UserDAO.getCurrentUser()!), atIndex: 0)
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
-            var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
-            cell.textField.becomeFirstResponder()
+            if UserDAO.getCurrentUser()?.requestLimit == 0
+            {
+                let alert = UIAlertView()
+                alert.title = "Ops!"
+                alert.message = "Acabaram seus RPs!"
+                alert.addButtonWithTitle("Ok")
+                alert.show()
+            }
+            else
+            {
+                requestsList.insert(Request(author: UserDAO.getCurrentUser()!), atIndex: 0)
+                let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                
+                var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
+                cell.textField.becomeFirstResponder()
+                isCreatingItem = false
+            }
         }
     
     }
@@ -110,6 +117,11 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.userPicture.layer.masksToBounds = false
         cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
         cell.userPicture.clipsToBounds = true
+        
+        if request.author.id == UserDAO.getCurrentUser()?.id
+        {
+            cell.hideButton()
+        }
         
         cell.layoutMargins = UIEdgeInsetsZero
         cell.preservesSuperviewLayoutMargins = false

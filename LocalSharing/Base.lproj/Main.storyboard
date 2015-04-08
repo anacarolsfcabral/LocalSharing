@@ -72,7 +72,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPh-JP-X41">
-                                <rect key="frame" x="177" y="440" width="246" height="47"/>
+                                <rect key="frame" x="177" y="462" width="246" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="PtA-2z-bBl"/>
                                     <constraint firstAttribute="width" constant="246" id="WuA-9C-iGr"/>
@@ -143,7 +143,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="EPh-JP-X41" secondAttribute="centerY" constant="-163.5" id="6Fg-Ef-PPz"/>
+                            <constraint firstAttribute="centerY" secondItem="EPh-JP-X41" secondAttribute="centerY" constant="-185.5" id="6Fg-Ef-PPz"/>
                             <constraint firstAttribute="centerX" secondItem="Qyr-hf-lDk" secondAttribute="centerX" id="6Up-35-yE0"/>
                             <constraint firstAttribute="centerY" secondItem="Qyr-hf-lDk" secondAttribute="centerY" id="Bix-XD-AUo"/>
                             <constraint firstItem="vi9-OZ-BDC" firstAttribute="top" secondItem="bzF-uI-ykq" secondAttribute="bottom" constant="46" id="FLc-Aj-D16"/>
@@ -243,9 +243,6 @@
                                                 <constraint firstAttribute="height" constant="18" id="pQZ-Ik-Mug"/>
                                             </constraints>
                                             <state key="normal" image="checkIcon"/>
-                                            <connections>
-                                                <action selector="iDoHave:" destination="6wj-an-y8b" eventType="touchUpInside" id="CDs-QR-Tbj"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -263,6 +260,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="iDoHaveButton" destination="1xo-Sl-6xZ" id="tDD-SC-gwf"/>
+                                    <outlet property="iDontHaveButton" destination="lIG-AZ-3IK" id="CJh-t1-HZC"/>
                                     <outlet property="textField" destination="Wg7-xw-JL8" id="qpI-TJ-Psy"/>
                                     <outlet property="userName" destination="pmC-Ig-Goo" id="gE9-9S-T5y"/>
                                     <outlet property="userPicture" destination="epS-Nu-YoO" id="4dV-Yw-5BX"/>
