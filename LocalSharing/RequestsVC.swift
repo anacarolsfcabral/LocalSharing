@@ -118,6 +118,9 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
         cell.userPicture.clipsToBounds = true
         
+        println(request.author.name)
+        println(UserDAO.getCurrentUser()!.name)
+        
         if request.author.id == UserDAO.getCurrentUser()?.id
         {
             cell.hideButton()

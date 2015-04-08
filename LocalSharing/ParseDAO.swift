@@ -12,20 +12,25 @@ class ParseDAO
 {
     class func getUser(pfUser: PFUser?) -> User?
     {
-        if let user = pfUser
+        var user: User?
+        
+        if pfUser != nil
         {
-            return User(
-                id: user.objectId,
-                name: user["name"] as String,
-                picture: UIImage(data: NSData(contentsOfURL: NSURL(string: user["photo"]! as String)!)!),
-                pictureLarge: UIImage(data: NSData(contentsOfURL: NSURL(string: user["photo"] as String + "?type=large")!)!),
-                requestLimit: user["requestsLimit"] as Int
+            let picture = pfUser!["photo"] as String
+            let url = NSURL(string: picture)!
+            let data = NSData(contentsOfURL: url)!
+            let image = UIImage(data: data)!
+            
+            user = User(
+                id: pfUser!.objectId,
+                name: pfUser!["name"] as String,
+                picture: image,
+                pictureLarge: UIImage(data: NSData(contentsOfURL: NSURL(string: picture + "?type=large")!)!)!,
+                requestLimit: pfUser!["requestsLimit"] as Int
             )
         }
-        else
-        {
-            return nil
-        }
+        
+        return user
     }
     
     class func getRequest(pfRequest: PFObject) -> Request

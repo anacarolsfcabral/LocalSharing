@@ -72,7 +72,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPh-JP-X41">
-                                <rect key="frame" x="177" y="462" width="246" height="47"/>
+                                <rect key="frame" x="177" y="496" width="246" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="PtA-2z-bBl"/>
                                     <constraint firstAttribute="width" constant="246" id="WuA-9C-iGr"/>
@@ -106,12 +106,6 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Sharing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5VZ-Tz-jMK">
                                         <rect key="frame" x="102" y="51" width="246" height="39"/>
@@ -122,12 +116,6 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.10196078431372549" green="0.56470588235294117" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
@@ -143,7 +131,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="EPh-JP-X41" secondAttribute="centerY" constant="-185.5" id="6Fg-Ef-PPz"/>
+                            <constraint firstAttribute="centerY" secondItem="EPh-JP-X41" secondAttribute="centerY" constant="-219.5" id="6Fg-Ef-PPz"/>
                             <constraint firstAttribute="centerX" secondItem="Qyr-hf-lDk" secondAttribute="centerX" id="6Up-35-yE0"/>
                             <constraint firstAttribute="centerY" secondItem="Qyr-hf-lDk" secondAttribute="centerY" id="Bix-XD-AUo"/>
                             <constraint firstItem="vi9-OZ-BDC" firstAttribute="top" secondItem="bzF-uI-ykq" secondAttribute="bottom" constant="46" id="FLc-Aj-D16"/>
@@ -243,6 +231,9 @@
                                                 <constraint firstAttribute="height" constant="18" id="pQZ-Ik-Mug"/>
                                             </constraints>
                                             <state key="normal" image="checkIcon"/>
+                                            <connections>
+                                                <action selector="iDoHave:" destination="6wj-an-y8b" eventType="touchUpInside" id="Qs6-0K-7cO"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -260,7 +251,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="iDoHaveButton" destination="1xo-Sl-6xZ" id="tDD-SC-gwf"/>
+                                    <outlet property="iDoHaveButton" destination="1xo-Sl-6xZ" id="g4V-mb-Hj7"/>
                                     <outlet property="iDontHaveButton" destination="lIG-AZ-3IK" id="CJh-t1-HZC"/>
                                     <outlet property="textField" destination="Wg7-xw-JL8" id="qpI-TJ-Psy"/>
                                     <outlet property="userName" destination="pmC-Ig-Goo" id="gE9-9S-T5y"/>

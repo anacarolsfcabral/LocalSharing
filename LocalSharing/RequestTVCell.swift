@@ -20,6 +20,15 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     var request: Request?
     var parent: RequestsVC?
     
+    @IBAction func iDoHave(sender: AnyObject)
+    {
+        RequestDAO.respondRequest(request!, hasItem: true) { (request, error) -> Void in
+            if error == nil
+            {
+            }
+        }
+      parent!.performSegueWithIdentifier("goToDealing", sender: self)
+    }
     
     override func awakeFromNib()
     {
@@ -73,10 +82,10 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
         return shouldChange
     }
     
-    func hideButton() -> Void
+    func hideButton()
     {
         println("Hiden!")
-        self.iDoHaveButton.hidden = true
-        self.iDontHaveButton.hidden = true
+        self.iDoHaveButton!.hidden = true
+        self.iDontHaveButton!.hidden = true
     }
 }

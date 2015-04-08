@@ -30,6 +30,7 @@ class UserDAO
     // Get current user
     class func getCurrentUser() -> User?
     {
+        println(PFUser.currentUser())
         return ParseDAO.getUser(PFUser.currentUser())
     }
 }
