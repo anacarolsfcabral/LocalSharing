@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 
 class ItemDAO
@@ -21,7 +22,7 @@ class ItemDAO
                 (pfResults, error) in
                 if error == nil
                 {
-                    for pfResult in pfResults as [PFObject]
+                    for pfResult in pfResults as! [PFObject]
                     {
                         items.append(ParseDAO.getItem(pfResult))
                     }

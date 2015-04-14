@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class RequestDAO
 {
@@ -20,7 +21,7 @@ class RequestDAO
                 (pfResult, error) in
                 if error == nil
                 {
-                    request = ParseDAO.getRequest(pfResult as PFObject)
+                    request = ParseDAO.getRequest(pfResult as! PFObject)
                 }
                 
                 callback(request, error)
@@ -37,7 +38,7 @@ class RequestDAO
                 (pfResults, error) in
                 if error == nil
                 {
-                    for pfResult in pfResults as [PFObject]
+                    for pfResult in pfResults as! [PFObject]
                     {
                         requests.append(ParseDAO.getRequest(pfResult))
                     }
@@ -57,7 +58,7 @@ class RequestDAO
                 (pfResults, error) in
                 if error == nil
                 {
-                    for pfResult in pfResults as [PFObject]
+                    for pfResult in pfResults as! [PFObject]
                     {
                         requests.append(ParseDAO.getRequest(pfResult))
                     }
@@ -77,7 +78,7 @@ class RequestDAO
                 (pfResults, error) in
                 if error == nil
                 {
-                    for pfResult in pfResults as [PFObject]
+                    for pfResult in pfResults as! [PFObject]
                     {
                         requests.append(ParseDAO.getRequest(pfResult))
                     }
@@ -95,7 +96,7 @@ class RequestDAO
                 (pfResult, error) in
                 if error == nil
                 {
-                    let pfRequest   = pfResult as PFObject
+                    let pfRequest   = pfResult as! PFObject
                     request.helper  = ParseDAO.getUser(pfRequest["helper"] as? PFUser)
                     request.dealing = true
                 }
@@ -112,7 +113,7 @@ class RequestDAO
                 (pfResult, error) in
                 if error == nil
                 {
-                    let pfRequest   = pfResult as PFObject
+                    let pfRequest   = pfResult as! PFObject
                     request.helper  = nil
                     request.dealing = false
                 }
@@ -130,7 +131,7 @@ class RequestDAO
                 (pfResult, error) in
                 if error == nil
                 {
-                    let pfRequest   = pfResult as PFObject
+                    let pfRequest   = pfResult as! PFObject
                     request.helper  = ParseDAO.getUser(pfRequest["helper"] as? PFUser)
                     request.dealing = false
                     request.closed  = true

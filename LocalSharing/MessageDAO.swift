@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 
 class MessageDAO
@@ -21,7 +22,7 @@ class MessageDAO
                 (pfResult, error) in
                 if error == nil
                 {
-                    message = ParseDAO.getMessage(pfResult as PFObject)
+                    message = ParseDAO.getMessage(pfResult as! PFObject)
                 }
                 
                 callback(message, error)
@@ -38,7 +39,7 @@ class MessageDAO
                 (pfResults, error) in
                 if error == nil
                 {
-                    for pfResult in pfResults as [PFObject]
+                    for pfResult in pfResults as! [PFObject]
                     {
                         messages.append(ParseDAO.getMessage(pfResult))
                     }

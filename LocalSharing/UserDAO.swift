@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class UserDAO
 {    
@@ -15,8 +16,8 @@ class UserDAO
     {
         var user: User?
         
-        PFFacebookUtils.logInWithPermissions(["public_profile"],
-        {
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile"],
+        block: {
             (pfUser, error) in
             if (pfUser != nil)
             {

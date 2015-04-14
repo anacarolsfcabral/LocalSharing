@@ -74,7 +74,7 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     {
         var shouldChange = false
         
-        if countElements(textField.text) < 17
+        if count(textField.text) < 17
         {
             shouldChange = true
         }

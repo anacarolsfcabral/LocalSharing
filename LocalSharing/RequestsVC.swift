@@ -27,15 +27,15 @@ class RequestsVC: UITableViewController, UITableViewDataSource
             }
         }
         
-        var feedIconBar: UITabBarItem = self.tabBarController?.tabBar.items![0] as UITabBarItem
+        var feedIconBar: UITabBarItem = self.tabBarController?.tabBar.items![0] as! UITabBarItem
         feedIconBar.image = UIImage(named: "feedIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
-        var tradeIconBar: UITabBarItem = self.tabBarController?.tabBar.items![1] as UITabBarItem
+        var tradeIconBar: UITabBarItem = self.tabBarController?.tabBar.items![1] as! UITabBarItem
         tradeIconBar.image = UIImage(named: "tradeIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
-        var messageIconBar: UITabBarItem = self.tabBarController?.tabBar.items![2] as UITabBarItem
+        var messageIconBar: UITabBarItem = self.tabBarController?.tabBar.items![2] as! UITabBarItem
         messageIconBar.image = UIImage(named: "messageIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        var profileIconBar: UITabBarItem = self.tabBarController?.tabBar.items![3] as UITabBarItem
+        var profileIconBar: UITabBarItem = self.tabBarController?.tabBar.items![3] as! UITabBarItem
         profileIconBar.image = UIImage(named: "profileIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
         
@@ -75,7 +75,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
                 let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                 self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                 
-                var cell = self.tableView.cellForRowAtIndexPath(indexPath) as RequestTVCell
+                var cell = self.tableView.cellForRowAtIndexPath(indexPath) as! RequestTVCell
                 cell.textField.becomeFirstResponder()
                 isCreatingItem = false
             }
@@ -100,7 +100,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as RequestTVCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! RequestTVCell
         
         let request : Request = self.requestsList[indexPath.item]
         
@@ -171,8 +171,8 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender as? RequestTVCell) != nil
         {
-            let cell = sender as RequestTVCell
-            let destination = segue.destinationViewController as DealingVC
+            let cell = sender as! RequestTVCell
+            let destination = segue.destinationViewController as! DealingVC
             destination.request = cell.request
         }
     }
