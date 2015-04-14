@@ -84,7 +84,6 @@ class RequestTVCell: UITableViewCell, UITextFieldDelegate
     
     func hideButton()
     {
-        println("Hiden!")
         self.iDoHaveButton!.hidden = true
         self.iDontHaveButton!.hidden = true
     }

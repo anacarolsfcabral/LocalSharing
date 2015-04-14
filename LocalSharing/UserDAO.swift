@@ -10,7 +10,11 @@ import UIKit
 import Parse
 
 class UserDAO
-{    
+{
+    struct Static {
+        static var user : User?
+    }
+    
     // Login
     class func login(then callback: (User?, NSError?) -> Void)
     {
@@ -31,7 +35,10 @@ class UserDAO
     // Get current user
     class func getCurrentUser() -> User?
     {
-        println(PFUser.currentUser())
-        return ParseDAO.getUser(PFUser.currentUser())
+        if Static.user == nil {
+            Static.user = ParseDAO.getUser(PFUser.currentUser())
+        }
+        
+        return Static.user
     }
 }

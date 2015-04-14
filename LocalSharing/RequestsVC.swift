@@ -27,6 +27,8 @@ class RequestsVC: UITableViewController, UITableViewDataSource
             }
         }
         
+        self.tabBarController?.becomeFirstResponder()
+        
         var feedIconBar: UITabBarItem = self.tabBarController?.tabBar.items![0] as! UITabBarItem
         feedIconBar.image = UIImage(named: "feedIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
@@ -117,10 +119,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         cell.userPicture.layer.masksToBounds = false
         cell.userPicture.layer.cornerRadius = cell.userPicture.frame.size.height/2
         cell.userPicture.clipsToBounds = true
-        
-        println(request.author.name)
-        println(UserDAO.getCurrentUser()!.name)
-        
+                
         if request.author.id == UserDAO.getCurrentUser()?.id
         {
             cell.hideButton()
@@ -177,6 +176,9 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         }
     }
     
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        println("Opa!")
+    }
 }
 
 //var alert = UIAlertController(title: "Ops!", message: "Você esqueceu de preencher o item!", preferredStyle: UIAlertControllerStyle.Alert)
