@@ -10,7 +10,7 @@ import UIKit
 
 var isCreatingItem: Bool = false
 
-class RequestsVC: UITableViewController, UITableViewDataSource
+class RequestsVC: UITableViewController
 {
     var requestsList: [Request] = []
     var page: Int = 1
@@ -29,21 +29,21 @@ class RequestsVC: UITableViewController, UITableViewDataSource
         
         self.tabBarController?.becomeFirstResponder()
         
-        var feedIconBar: UITabBarItem = self.tabBarController?.tabBar.items![0] as! UITabBarItem
+        let feedIconBar: UITabBarItem = self.tabBarController!.tabBar.items![0]
         feedIconBar.image = UIImage(named: "feedIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
-        var tradeIconBar: UITabBarItem = self.tabBarController?.tabBar.items![1] as! UITabBarItem
+        let tradeIconBar: UITabBarItem = self.tabBarController!.tabBar.items![1] 
         tradeIconBar.image = UIImage(named: "tradeIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
-        var messageIconBar: UITabBarItem = self.tabBarController?.tabBar.items![2] as! UITabBarItem
+        let messageIconBar: UITabBarItem = self.tabBarController!.tabBar.items![2] 
         messageIconBar.image = UIImage(named: "messageIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        var profileIconBar: UITabBarItem = self.tabBarController?.tabBar.items![3] as! UITabBarItem
+        let profileIconBar: UITabBarItem = self.tabBarController!.tabBar.items![3]
         profileIconBar.image = UIImage(named: "profileIcon")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
         
         
         
-        var backgroundView = UIView(frame: CGRectZero)
+        let backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
         self.tableView.separatorInset = UIEdgeInsetsZero
         self.tableView.backgroundColor = UIColor.whiteColor()
@@ -77,7 +77,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
                 let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                 self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                 
-                var cell = self.tableView.cellForRowAtIndexPath(indexPath) as! RequestTVCell
+                let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! RequestTVCell
                 cell.textField.becomeFirstResponder()
                 isCreatingItem = false
             }
@@ -177,7 +177,7 @@ class RequestsVC: UITableViewController, UITableViewDataSource
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        println("Opa!")
+        print("Opa!")
     }
 }
 

@@ -39,7 +39,7 @@ class DealingVC: UIViewController, UITextFieldDelegate, UITableViewDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         MessageDAO.sendMessage(request, content: self.viewTextField.text) { (message, error) -> Void in
-            println(message)
+            print(message)
             self.messages.append(message!)
             self.dealingTableView.reloadData()
         }
@@ -51,7 +51,7 @@ class DealingVC: UIViewController, UITextFieldDelegate, UITableViewDelegate {
     
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
         
         let message : Message = self.messages[indexPath.item]
        

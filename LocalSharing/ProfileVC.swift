@@ -19,7 +19,7 @@ class ProfileVC: UIViewController
 
         // Do any additional setup after loading the view.
         
-        var user = UserDAO.getCurrentUser()
+        let user = UserDAO.getCurrentUser()
         self.userPicture.image = user?.pictureLarge
         self.userPicture.layer.borderWidth=1.0
         self.userPicture.layer.masksToBounds = false
